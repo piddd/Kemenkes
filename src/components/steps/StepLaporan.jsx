@@ -5,11 +5,6 @@ export default function StepLaporan({ checklist, updateChecklist, rekomendasi, u
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Laporan Hasil</h2>
-        <p>Laporan hasil pemeriksaan sanitasi kapal</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Checklist Pemeriksaan</h3>
         <div className="table-responsive">

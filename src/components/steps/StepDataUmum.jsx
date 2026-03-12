@@ -44,11 +44,6 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Data Umum Kapal</h2>
-        <p>Lengkapi informasi umum kapal dan petugas pemeriksa</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Informasi Kapal</h3>
         <div className="form-grid">
@@ -121,38 +116,47 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           <div className="form-group">
             <label>Tanggal Tiba</label>
             <input type="date" value={kapal.tanggalTiba} onChange={e => updateKapal('tanggalTiba', e.target.value)} placeholder="dd/mm/yyyy" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Tanggal kapal tiba di pelabuhan</small>
           </div>
           <div className="form-group">
             <label>Jam Tiba</label>
             <input type="time" value={kapal.jamTiba} onChange={e => updateKapal('jamTiba', e.target.value)} placeholder="HH:MM" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Waktu kapal sandar/labuh jangkar</small>
           </div>
           <div className="form-group">
             <label>Lokasi Tiba</label>
             <input value={kapal.lokasiTiba} onChange={e => updateKapal('lokasiTiba', e.target.value)} placeholder="Pelabuhan Tanjung Priok" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama pelabuhan kedatangan</small>
           </div>
           <div className="form-group">
             <label>Tanggal Periksa</label>
             <input type="date" value={kapal.tanggalPeriksa} onChange={e => updateKapal('tanggalPeriksa', e.target.value)} placeholder="dd/mm/yyyy" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Tanggal pelaksanaan inspeksi sanitasi</small>
           </div>
           <div className="form-group">
             <label>Jam Periksa</label>
             <input type="time" value={kapal.jamPeriksa} onChange={e => updateKapal('jamPeriksa', e.target.value)} placeholder="HH:MM" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Waktu mulai pemeriksaan di atas kapal</small>
           </div>
           <div className="form-group">
             <label>Lokasi Periksa</label>
             <input value={kapal.lokasiPeriksa} onChange={e => updateKapal('lokasiPeriksa', e.target.value)} placeholder="Dermaga 3 Pelabuhan Tanjung Priok" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Lokasi spesifik pemeriksaan dilakukan</small>
           </div>
           <div className="form-group">
             <label>Tanggal Berangkat</label>
             <input type="date" value={kapal.tanggalBerangkat} onChange={e => updateKapal('tanggalBerangkat', e.target.value)} placeholder="dd/mm/yyyy" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Tanggal kapal dijadwalkan meninggalkan pelabuhan</small>
           </div>
           <div className="form-group">
             <label>Jam Berangkat</label>
             <input type="time" value={kapal.jamBerangkat} onChange={e => updateKapal('jamBerangkat', e.target.value)} placeholder="HH:MM" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Estimasi waktu kapal bertolak</small>
           </div>
           <div className="form-group">
             <label>SSCEC/SSCC Lama</label>
             <input value={kapal.sscecLama} onChange={e => updateKapal('sscecLama', e.target.value)} placeholder="SSCEC/2024/001" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor sertifikat sanitasi sebelumnya (jika ada)</small>
           </div>
         </div>
       </div>
@@ -163,46 +167,57 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           <div className="form-group">
             <label>Nama Petugas 1</label>
             <input value={petugas.nama1} onChange={e => updatePetugas('nama1', e.target.value)} placeholder="Dr. Ahmad Hidayat" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap + gelar sesuai SK penugasan</small>
           </div>
           <div className="form-group">
             <label>NIP Petugas 1</label>
             <input type="number" value={petugas.nip1} onChange={e => updatePetugas('nip1', e.target.value)} placeholder="198501012010011001" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP ASN petugas</small>
           </div>
           <div className="form-group">
             <label>Nama Petugas 2</label>
             <input value={petugas.nama2} onChange={e => updatePetugas('nama2', e.target.value)} placeholder="Dr. Siti Nurhaliza" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 1 petugas</small>
           </div>
           <div className="form-group">
             <label>NIP Petugas 2</label>
             <input type="number" value={petugas.nip2} onChange={e => updatePetugas('nip2', e.target.value)} placeholder="198602022011012002" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 1 petugas</small>
           </div>
           <div className="form-group">
             <label>Nama Petugas 3</label>
             <input value={petugas.nama3} onChange={e => updatePetugas('nama3', e.target.value)} placeholder="Dr. Budi Santoso" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 2 petugas</small>
           </div>
           <div className="form-group">
             <label>NIP Petugas 3</label>
             <input type="number" value={petugas.nip3} onChange={e => updatePetugas('nip3', e.target.value)} placeholder="198703032012013003" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 2 petugas</small>
           </div>
           <div className="form-group">
             <label>Nama Kepala Wilker</label>
             <input value={petugas.namaWilker} onChange={e => updatePetugas('namaWilker', e.target.value)} placeholder="Dr. Andi Wijaya, M.Kes" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kepala Wilayah Kerja KKP yang berwenang</small>
           </div>
           <div className="form-group">
             <label>NIP Kepala Wilker</label>
             <input type="number" value={petugas.nipWilker} onChange={e => updatePetugas('nipWilker', e.target.value)} placeholder="197501011998031001" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP Kepala Wilker sesuai SK jabatan</small>
           </div>
           <div className="form-group">
             <label>Nama Ketua Tim</label>
             <input value={petugas.namaKetuaTim} onChange={e => updatePetugas('namaKetuaTim', e.target.value)} placeholder="Dr. Rini Kusuma, M.Sc" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Penanggung jawab tim inspeksi</small>
           </div>
           <div className="form-group">
             <label>NIP Ketua Tim</label>
             <input type="number" value={petugas.nipKetuaTim} onChange={e => updatePetugas('nipKetuaTim', e.target.value)} placeholder="197602022000032001" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP Ketua Tim sesuai surat tugas</small>
           </div>
           <div className="form-group full">
             <label>Nama Pelabuhan</label>
             <input value={petugas.pelabuhan} onChange={e => updatePetugas('pelabuhan', e.target.value)} placeholder="Tanjung Priok" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama pelabuhan KKP yang melaksanakan pemeriksaan</small>
           </div>
         </div>
         

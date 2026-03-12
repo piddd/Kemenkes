@@ -5,11 +5,6 @@ export default function StepPangan({ checklist, updateChecklist, rekomendasi, up
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Pangan</h2>
-        <p>Supervisi checklist pengamanan pangan</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Checklist Pemeriksaan</h3>
         <div className="table-responsive">

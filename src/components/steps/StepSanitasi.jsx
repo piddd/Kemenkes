@@ -5,11 +5,6 @@ export default function StepSanitasi({ checklist, updateChecklist, rekomendasi, 
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Sanitasi Kapal</h2>
-        <p>Pemeriksaan sanitasi kapal (Ship Sanitation)</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Checklist Pemeriksaan</h3>
         <div className="table-responsive">

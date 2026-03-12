@@ -88,11 +88,6 @@ export default function StepSubmit({
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Tanda Tangan & Dokumentasi</h2>
-        <p>Upload tanda tangan dan foto dokumentasi pemeriksaan</p>
-      </div>
-
       <div className="card" style={{background:'#ecfdf5',borderColor:'#17726d'}}>
         <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:12}}>
           <div>

@@ -5,11 +5,6 @@ export default function StepLimbah({ checklist, updateChecklist, rekomendasi, up
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Limbah</h2>
-        <p>Supervisi checklist pengamanan pengolahan limbah</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Checklist Pemeriksaan</h3>
         <div className="table-responsive">

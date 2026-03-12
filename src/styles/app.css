@@ -44,29 +44,31 @@ body {
   border-bottom: 1px solid rgba(255,255,255,0.1);
   margin-bottom: 12px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
+  text-align: center;
 }
 .sidebar-brand h1 {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.5px;
   margin: 0;
 }
 .sidebar-brand p {
-  font-size: 11px;
-  color: rgba(255,255,255,0.7);
-  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.8);
+  margin: 2px 0 0 0;
 }
 .sidebar-logo {
-  width: 40px;
-  height: 40px;
+  width: 200px;
+  height: 60px;
   object-fit: contain;
   flex-shrink: 0;
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
-  padding: 4px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
 }
 
 .progress-section {
@@ -165,8 +167,8 @@ body {
 
 /* ===================== HEADER ===================== */
 .app-header {
-  background: #fff;
-  border-bottom: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #17726d 0%, #1a8a7f 100%);
+  border-bottom: none;
   padding: 16px 32px;
   display: flex;
   align-items: center;
@@ -174,12 +176,24 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .header-left {
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1;
+}
+.header-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
 }
 .header-logo {
   height: 48px;
@@ -188,15 +202,16 @@ body {
 .header-left h1 {
   font-size: 18px;
   font-weight: 700;
-  color: #17726d;
+  color: #ffffff;
   margin: 0;
 }
 .header-left p {
-  font-size: 11px;
-  color: #64748b;
-  margin: 2px 0 0 0;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 4px 0 0 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
 }
 .header-right {
   display: flex;
@@ -230,15 +245,34 @@ body {
   background: #e2e8f0;
 }
 .btn-clear {
-  background: #fee2e2;
+  background: rgba(255, 255, 255, 0.95);
   color: #dc2626;
-  border: 1px solid #fecaca;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
+.btn-clear:hover {
+  background: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.btn-export {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+.btn-export:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .btn-clear:hover {
   background: #fecaca;
 }
 .btn-export {
-  background: #17726d;
+  background: #136965;
   color: #fff;
 }
 .btn-export:hover {
@@ -258,6 +292,7 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
 .step-header {
   margin-bottom: 8px;
 }

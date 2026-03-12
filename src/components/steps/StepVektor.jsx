@@ -5,11 +5,6 @@ export default function StepVektor({ checklist, updateChecklist, rekomendasi, up
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Vektor & BPP</h2>
-        <p>Pemeriksaan vektor dan binatang penular penyakit</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Checklist Pemeriksaan</h3>
         <div className="table-responsive">

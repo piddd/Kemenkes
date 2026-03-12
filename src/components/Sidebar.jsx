@@ -24,7 +24,7 @@ export default function Sidebar({ currentStep, progress, onStepClick, isOpen, on
           className="sidebar-logo"
           onError={(e) => e.target.style.display='none'} 
         />
-        <div>
+        <div className="sidebar-title">
           <h1>SSCEC/SSCC</h1>
           <p>Ship Sanitation</p>
         </div>

@@ -5,11 +5,6 @@ export default function StepAirMinum({ checklist, updateChecklist, rekomendasi, 
 
   return (
     <div className="step-wrapper">
-      <div className="step-header">
-        <h2>Air Minum</h2>
-        <p>Supervisi checklist penyehatan air minum</p>
-      </div>
-
       <div className="card">
         <h3 className="card-title">Checklist Pemeriksaan</h3>
         <div className="table-responsive">

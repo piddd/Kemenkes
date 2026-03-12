@@ -8,7 +8,7 @@ td, th { border: 1px solid #000; padding: 3px 5px; }
 .nb td, .nb th { border: none; }
 
 .doc-kop { width: 100%; margin-bottom: 4px; }
-.doc-kop img { width: 100%; height: auto; }
+.doc-kop img { width: 100%;  object-fit: cover; object-position: center; }
 .doc-title { text-align: center; font-weight: bold; font-size: 11pt; margin: 8px 0 2px; }
 .doc-subtitle { text-align: center; font-weight: bold; font-style: italic; font-size: 10pt; margin-bottom: 8px; }
 

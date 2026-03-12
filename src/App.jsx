@@ -262,6 +262,21 @@ function App() {
   // Calculate progress
   const progress = Math.round((currentStep / 9) * 100);
 
+  // Define step info for header
+  const stepInfo = {
+    1: { icon: '📋', title: 'Data Umum', subtitle: 'Silakan lengkapi informasi data umum kapal untuk memulai proses inspeksi sanitasi.' },
+    2: { icon: '🚢', title: 'Sanitasi Kapal', subtitle: 'Periksa kondisi sanitasi di berbagai lokasi kapal.' },
+    3: { icon: '💧', title: 'Air Minum', subtitle: 'Inspeksi kualitas dan pengelolaan air minum di kapal.' },
+    4: { icon: '🍽️', title: 'Pangan', subtitle: 'Periksa pengelolaan dan penyimpanan pangan di kapal.' },
+    5: { icon: '♻️', title: 'Limbah', subtitle: 'Inspeksi pengelolaan limbah padat dan cair.' },
+    6: { icon: '☢️', title: 'Radiasi', subtitle: 'Periksa potensi paparan radiasi di kapal.' },
+    7: { icon: '🐀', title: 'Vektor & Binatang', subtitle: 'Inspeksi keberadaan vektor dan binatang pembawa penyakit.' },
+    8: { icon: '📋', title: 'Laporan Hasil', subtitle: 'Ringkasan hasil inspeksi dan rekomendasi.' },
+    9: { icon: '✍️', title: 'Submit & TTD', subtitle: 'Tanda tangan dan finalisasi laporan inspeksi.' },
+  };
+
+  const currentStepInfo = stepInfo[currentStep] || stepInfo[1];
+
   if (showOnboarding) {
     return <OnboardingScreen onComplete={() => setShowOnboarding(false)} />;
   }
@@ -299,9 +314,10 @@ function App() {
           </button>
           
           <div className="header-left">
+            <div className="header-icon">{currentStepInfo.icon}</div>
             <div>
-              <h1>Sanitation Inspection</h1>
-              <p>KEMENTERIAN KESEHATAN RI</p>
+              <h1>{currentStepInfo.title}</h1>
+              <p>{currentStepInfo.subtitle}</p>
             </div>
           </div>
           <div className="header-right">
