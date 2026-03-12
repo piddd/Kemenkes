@@ -55,50 +55,62 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           <div className="form-group">
             <label>Nama Kapal <em>(Ship Name)</em></label>
             <input value={kapal.namaKapal} onChange={e => updateKapal('namaKapal', e.target.value)} placeholder="MV Sinar Batam" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama resmi kapal sesuai dokumen</small>
           </div>
           <div className="form-group">
             <label>Jenis Kapal <em>(Type of Ship)</em></label>
             <input value={kapal.jenisKapal} onChange={e => updateKapal('jenisKapal', e.target.value)} placeholder="Cargo" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Pilih sesuai klasifikasi kapal</small>
           </div>
           <div className="form-group">
             <label>Besar Kapal <em>(Weight) (GRT)</em></label>
             <input type="number" value={kapal.grt} onChange={e => updateKapal('grt', e.target.value)} placeholder="8500" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Gross Tonnage tercantum di Surat Ukur</small>
           </div>
           <div className="form-group">
             <label>Bendera <em>(Flag)</em></label>
             <input value={kapal.bendera} onChange={e => updateKapal('bendera', e.target.value)} placeholder="Indonesia" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Negara registrasi kapal</small>
           </div>
           <div className="form-group">
             <label>Nomor IMO <em>(IMO Number)</em></label>
             <input value={kapal.nomorIMO} onChange={e => updateKapal('nomorIMO', e.target.value)} placeholder="9234567" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>7 digit angka unik identitas kapal</small>
           </div>
           <div className="form-group">
             <label>Nama Kapten <em>(Captain Name)</em></label>
             <input value={kapal.namaKapten} onChange={e => updateKapal('namaKapten', e.target.value)} placeholder="Capt. John Smith" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap sesuai Sertifikat Kompetensi</small>
           </div>
           <div className="form-group">
             <label>Pemilik/Agen <em>(Owner/Agent)</em></label>
             <input value={kapal.pemilikAgen} onChange={e => updateKapal('pemilikAgen', e.target.value)} placeholder="PT Pelayaran Nasional" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama perusahaan pelayaran atau agen lokal</small>
           </div>
           <div className="form-group">
             <label>Jumlah ABK <em>(Total Crew)</em></label>
             <input type="number" value={kapal.jumlahABK} onChange={e => updateKapal('jumlahABK', e.target.value)} placeholder="25" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Total awak kapal aktif di atas kapal</small>
           </div>
           <div className="form-group">
             <label>Jumlah Penumpang <em>(Total Passenger)</em></label>
             <input type="number" value={kapal.jumlahPenumpang} onChange={e => updateKapal('jumlahPenumpang', e.target.value)} placeholder="0" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Isi 0 jika kapal kargo tanpa penumpang</small>
           </div>
           <div className="form-group">
             <label>Pelabuhan Asal <em>(Last Port)</em></label>
             <input value={kapal.lastPort} onChange={e => updateKapal('lastPort', e.target.value)} placeholder="Singapore" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Pelabuhan terakhir sebelum tiba</small>
           </div>
           <div className="form-group">
             <label>Pelabuhan Tujuan <em>(Next Port)</em></label>
             <input value={kapal.nextPort} onChange={e => updateKapal('nextPort', e.target.value)} placeholder="Belawan" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Pelabuhan berikutnya setelah singgah</small>
           </div>
           <div className="form-group">
             <label>Lokasi Sandar <em>(Berthing Location)</em></label>
             <input value={kapal.lokasiSandar} onChange={e => updateKapal('lokasiSandar', e.target.value)} placeholder="Dermaga 3 Pelabuhan Tanjung Priok" />
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor dermaga dan nama pelabuhan sandar</small>
           </div>
         </div>
       </div>
