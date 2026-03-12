@@ -54,11 +54,11 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
         <div className="form-grid">
           <div className="form-group">
             <label>Nama Kapal <em>(Ship Name)</em></label>
-            <input value={kapal.namaKapal} onChange={e => updateKapal('namaKapal', e.target.value)} />
+            <input value={kapal.namaKapal} onChange={e => updateKapal('namaKapal', e.target.value)} placeholder="Contoh: MV Sinar Batam" />
           </div>
           <div className="form-group">
             <label>Jenis Kapal <em>(Type of Ship)</em></label>
-            <input value={kapal.jenisKapal} onChange={e => updateKapal('jenisKapal', e.target.value)} />
+            <input value={kapal.jenisKapal} onChange={e => updateKapal('jenisKapal', e.target.value)} placeholder="Contoh: Cargo" />
           </div>
           <div className="form-group">
             <label>Besar Kapal <em>(Weight) (GRT)</em></label>
@@ -66,39 +66,39 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>Bendera <em>(Flag)</em></label>
-            <input value={kapal.bendera} onChange={e => updateKapal('bendera', e.target.value)} />
+            <input value={kapal.bendera} onChange={e => updateKapal('bendera', e.target.value)} placeholder="Contoh: Indonesia" />
           </div>
           <div className="form-group">
             <label>Nomor IMO <em>(IMO Number)</em></label>
-            <input value={kapal.nomorIMO} onChange={e => updateKapal('nomorIMO', e.target.value)} />
+            <input value={kapal.nomorIMO} onChange={e => updateKapal('nomorIMO', e.target.value)} placeholder="Contoh: 9234567" />
           </div>
           <div className="form-group">
             <label>Nama Kapten <em>(Captain Name)</em></label>
-            <input value={kapal.namaKapten} onChange={e => updateKapal('namaKapten', e.target.value)} />
+            <input value={kapal.namaKapten} onChange={e => updateKapal('namaKapten', e.target.value)} placeholder="Contoh: Capt. John Smith" />
           </div>
           <div className="form-group">
             <label>Pemilik/Agen <em>(Owner/Agent)</em></label>
-            <input value={kapal.pemilikAgen} onChange={e => updateKapal('pemilikAgen', e.target.value)} />
+            <input value={kapal.pemilikAgen} onChange={e => updateKapal('pemilikAgen', e.target.value)} placeholder="Contoh: PT Pelayaran Nasional" />
           </div>
           <div className="form-group">
             <label>Jumlah ABK <em>(Total Crew)</em></label>
-            <input type="number" value={kapal.jumlahABK} onChange={e => updateKapal('jumlahABK', e.target.value)} />
+            <input type="number" value={kapal.jumlahABK} onChange={e => updateKapal('jumlahABK', e.target.value)} placeholder="Contoh: 25" />
           </div>
           <div className="form-group">
             <label>Jumlah Penumpang <em>(Total Passenger)</em></label>
-            <input type="number" value={kapal.jumlahPenumpang} onChange={e => updateKapal('jumlahPenumpang', e.target.value)} />
+            <input type="number" value={kapal.jumlahPenumpang} onChange={e => updateKapal('jumlahPenumpang', e.target.value)} placeholder="Contoh: 0" />
           </div>
           <div className="form-group">
             <label>Pelabuhan Asal <em>(Last Port)</em></label>
-            <input value={kapal.lastPort} onChange={e => updateKapal('lastPort', e.target.value)} />
+            <input value={kapal.lastPort} onChange={e => updateKapal('lastPort', e.target.value)} placeholder="Contoh: Singapore" />
           </div>
           <div className="form-group">
             <label>Pelabuhan Tujuan <em>(Next Port)</em></label>
-            <input value={kapal.nextPort} onChange={e => updateKapal('nextPort', e.target.value)} />
+            <input value={kapal.nextPort} onChange={e => updateKapal('nextPort', e.target.value)} placeholder="Contoh: Belawan" />
           </div>
           <div className="form-group">
             <label>Lokasi Sandar <em>(Berthing Location)</em></label>
-            <input value={kapal.lokasiSandar} onChange={e => updateKapal('lokasiSandar', e.target.value)} />
+            <input value={kapal.lokasiSandar} onChange={e => updateKapal('lokasiSandar', e.target.value)} placeholder="Contoh: Dermaga 3 Pelabuhan Tanjung Priok" />
           </div>
         </div>
       </div>
@@ -108,39 +108,39 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
         <div className="form-grid col3">
           <div className="form-group">
             <label>Tanggal Tiba</label>
-            <input type="date" value={kapal.tanggalTiba} onChange={e => updateKapal('tanggalTiba', e.target.value)} />
+            <input type="date" value={kapal.tanggalTiba} onChange={e => updateKapal('tanggalTiba', e.target.value)} placeholder="dd/mm/yyyy" />
           </div>
           <div className="form-group">
             <label>Jam Tiba</label>
-            <input type="time" value={kapal.jamTiba} onChange={e => updateKapal('jamTiba', e.target.value)} />
+            <input type="time" value={kapal.jamTiba} onChange={e => updateKapal('jamTiba', e.target.value)} placeholder="HH:MM" />
           </div>
           <div className="form-group">
             <label>Lokasi Tiba</label>
-            <input value={kapal.lokasiTiba} onChange={e => updateKapal('lokasiTiba', e.target.value)} />
+            <input value={kapal.lokasiTiba} onChange={e => updateKapal('lokasiTiba', e.target.value)} placeholder="Contoh: Pelabuhan Tanjung Priok" />
           </div>
           <div className="form-group">
             <label>Tanggal Periksa</label>
-            <input type="date" value={kapal.tanggalPeriksa} onChange={e => updateKapal('tanggalPeriksa', e.target.value)} />
+            <input type="date" value={kapal.tanggalPeriksa} onChange={e => updateKapal('tanggalPeriksa', e.target.value)} placeholder="dd/mm/yyyy" />
           </div>
           <div className="form-group">
             <label>Jam Periksa</label>
-            <input type="time" value={kapal.jamPeriksa} onChange={e => updateKapal('jamPeriksa', e.target.value)} />
+            <input type="time" value={kapal.jamPeriksa} onChange={e => updateKapal('jamPeriksa', e.target.value)} placeholder="HH:MM" />
           </div>
           <div className="form-group">
             <label>Lokasi Periksa</label>
-            <input value={kapal.lokasiPeriksa} onChange={e => updateKapal('lokasiPeriksa', e.target.value)} />
+            <input value={kapal.lokasiPeriksa} onChange={e => updateKapal('lokasiPeriksa', e.target.value)} placeholder="Contoh: Dermaga 3 Pelabuhan Tanjung Priok" />
           </div>
           <div className="form-group">
             <label>Tanggal Berangkat</label>
-            <input type="date" value={kapal.tanggalBerangkat} onChange={e => updateKapal('tanggalBerangkat', e.target.value)} />
+            <input type="date" value={kapal.tanggalBerangkat} onChange={e => updateKapal('tanggalBerangkat', e.target.value)} placeholder="dd/mm/yyyy" />
           </div>
           <div className="form-group">
             <label>Jam Berangkat</label>
-            <input type="time" value={kapal.jamBerangkat} onChange={e => updateKapal('jamBerangkat', e.target.value)} />
+            <input type="time" value={kapal.jamBerangkat} onChange={e => updateKapal('jamBerangkat', e.target.value)} placeholder="HH:MM" />
           </div>
           <div className="form-group">
             <label>SSCEC/SSCC Lama</label>
-            <input value={kapal.sscecLama} onChange={e => updateKapal('sscecLama', e.target.value)} />
+            <input value={kapal.sscecLama} onChange={e => updateKapal('sscecLama', e.target.value)} placeholder="Contoh: SSCEC/2024/001" />
           </div>
         </div>
       </div>
