@@ -61,8 +61,8 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
             <input value={kapal.jenisKapal} onChange={e => updateKapal('jenisKapal', e.target.value)} />
           </div>
           <div className="form-group">
-            <label>GRT <em>(Weight)</em></label>
-            <input value={kapal.grt} onChange={e => updateKapal('grt', e.target.value)} />
+            <label>Besar Kapal <em>(Weight) (GRT)</em></label>
+            <input type="number" value={kapal.grt} onChange={e => updateKapal('grt', e.target.value)} placeholder="Contoh: 8500" />
           </div>
           <div className="form-group">
             <label>Bendera <em>(Flag)</em></label>
