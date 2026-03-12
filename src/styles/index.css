@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+}
+
+/* Hide print area on screen */
+@media screen {
+  #print-area { display: none; }
+}
+
+/* Print mode: hide app, show print area */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  #root { display: none !important; }
+  #print-area { display: block !important; background: #fff !important; }
+  @page { size: A4 portrait; margin: 10mm 15mm 12mm 15mm; }
+  body { background: #fff !important; }
+}
