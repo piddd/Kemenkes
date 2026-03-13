@@ -123,16 +123,29 @@ function App() {
   }, []);
 
   const handleFotoUpload = useCallback((files) => {
+    if (!files || files.length === 0) return;
+    
     const newFotos = Array.from(files).map(file => {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = (e) => resolve(e.target.result);
-        reader.readAsDataURL(file);
+      return new Promise((resolve, reject) => {
+        try {
+          const reader = new FileReader();
+          reader.onload = (e) => resolve(e.target.result);
+          reader.onerror = () => reject(new Error('Failed to read file'));
+          reader.readAsDataURL(file);
+        } catch (error) {
+          reject(error);
+        }
       });
     });
-    Promise.all(newFotos).then(results => {
-      setFotoDokumentasi(prev => [...prev, ...results]);
-    });
+    
+    Promise.all(newFotos)
+      .then(results => {
+        setFotoDokumentasi(prev => [...prev, ...results]);
+      })
+      .catch(error => {
+        console.error('Error uploading photos:', error);
+        alert('Gagal upload beberapa foto. Mohon coba lagi.');
+      });
   }, []);
 
   const handleFotoRemove = useCallback((index) => {
