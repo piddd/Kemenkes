@@ -1,14 +1,44 @@
 /* Print-only styles injected into #print-area */
 export const PRINT_CSS = `
-.page { page-break-after: always; font-family: 'Times New Roman', Times, serif; font-size: 10pt; color: #000; background: #fff !important; }
+@page { 
+  size: A4; 
+  margin: 0.5cm; 
+}
+
+* {
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 10pt;
+  line-height: 1.3;
+}
+
+.page { 
+  page-break-after: always; 
+  font-family: 'Times New Roman', Times, serif; 
+  font-size: 10pt; 
+  color: #000; 
+  background: #fff !important;
+  width: 100%;
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .page:last-child { page-break-after: avoid; }
 .page * { background-color: transparent; }
-table { border-collapse: collapse; }
+table { border-collapse: collapse; width: 100%; }
 td, th { border: 1px solid #000; padding: 3px 5px; }
 .nb td, .nb th { border: none; }
 
 .doc-kop { width: 100%; margin-bottom: 4px; }
-.doc-kop img { width: 100%;  object-fit: cover; object-position: center; }
+.doc-kop img { width: 100%; height: auto; object-fit: cover; object-position: center; display: block; }
 .doc-title { text-align: center; font-weight: bold; font-size: 11pt; margin: 8px 0 2px; }
 .doc-subtitle { text-align: center; font-weight: bold; font-style: italic; font-size: 10pt; margin-bottom: 8px; }
 
@@ -21,6 +51,7 @@ td, th { border: 1px solid #000; padding: 3px 5px; }
 .ti-wrap { font-size: 9.5pt; margin-bottom: 8px; }
 .ti-wrap td { border: none; padding: 1px 4px; font-size: 9.5pt; }
 
+.ck { width: 100%; }
 .ck th { text-align: center; font-weight: bold; background: #fff !important; padding: 4px 5px; font-size: 9pt; }
 .ck td { padding: 3px 5px; font-size: 9pt; background: #fff !important; vertical-align: top; }
 .ck .cn { width: 28px; text-align: center; }
@@ -47,4 +78,22 @@ td, th { border: 1px solid #000; padding: 3px 5px; }
 .ca { font-size: 9.5pt; }
 .rkc { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #000; vertical-align: middle; text-align: center; line-height: 12px; font-size: 10pt; margin-right: 4px; }
 .ks { text-align: center; font-size: 9pt; margin-top: 10px; page-break-inside: avoid; }
+
+/* Ensure consistent rendering across devices */
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  .page {
+    margin: 0 !important;
+    padding: 10px !important;
+  }
+}
 `;

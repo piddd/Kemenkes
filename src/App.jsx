@@ -174,10 +174,38 @@ function App() {
         <html>
         <head>
           <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>SSCEC/SSCC - Ship Sanitation Certificate</title>
           <style>
-            @page { margin: 0.5cm; }
-            body { margin: 0; padding: 10px; }
+            @page { 
+              size: A4; 
+              margin: 0.5cm; 
+            }
+            * {
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+              box-sizing: border-box;
+            }
+            body { 
+              margin: 0; 
+              padding: 10px;
+              font-family: 'Times New Roman', Times, serif;
+              font-size: 10pt;
+              line-height: 1.3;
+            }
+            @media print {
+              body {
+                margin: 0 !important;
+                padding: 10px !important;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          ${html}
+        </body>
+        </html>
+      `);
           </style>
         </head>
         <body>
