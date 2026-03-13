@@ -210,9 +210,9 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Ketua Tim sesuai surat tugas</small>
           </div>
           <div className="form-group">
-            <label>NIP (samain sm yg lain sesuai SK jabatan) soalnya pakai SK bukan surat tugas</label>
+            <label>NIP Ketua Tim</label>
             <input type="number" value={petugas.nipKetuaTim} onChange={e => updatePetugas('nipKetuaTim', e.target.value)} placeholder="197602022000032001" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan (bukan surat tugas)</small>
           </div>
           <div className="form-group full">
             <label>Nama Pelabuhan</label>
