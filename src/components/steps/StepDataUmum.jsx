@@ -195,24 +195,24 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 2 petugas</small>
           </div>
           <div className="form-group">
-            <label>Nama Kepala Wilker</label>
+            <label>Kepala Wilayah Kerja/Penanggung Jawab</label>
             <input value={petugas.namaWilker} onChange={e => updatePetugas('namaWilker', e.target.value)} placeholder="Dr. Andi Wijaya, M.Kes" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kepala Wilayah Kerja KKP yang berwenang</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Kepala Wilker KKP</small>
           </div>
           <div className="form-group">
-            <label>NIP Kepala Wilker</label>
+            <label>NIP Kepala Wilker sesuai SK jabatan</label>
             <input type="number" value={petugas.nipWilker} onChange={e => updatePetugas('nipWilker', e.target.value)} placeholder="197501011998031001" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP Kepala Wilker sesuai SK jabatan</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
           </div>
           <div className="form-group">
-            <label>Nama Ketua Tim</label>
+            <label>Ketua Tim Kerja Pengawasan Alat Angkut dan Barang</label>
             <input value={petugas.namaKetuaTim} onChange={e => updatePetugas('namaKetuaTim', e.target.value)} placeholder="Dr. Rini Kusuma, M.Sc" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Penanggung jawab tim inspeksi</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Ketua Tim sesuai surat tugas</small>
           </div>
           <div className="form-group">
-            <label>NIP Ketua Tim</label>
+            <label>NIP (samain sm yg lain sesuai SK jabatan) soalnya pakai SK bukan surat tugas</label>
             <input type="number" value={petugas.nipKetuaTim} onChange={e => updatePetugas('nipKetuaTim', e.target.value)} placeholder="197602022000032001" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP Ketua Tim sesuai surat tugas</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
           </div>
           <div className="form-group full">
             <label>Nama Pelabuhan</label>
