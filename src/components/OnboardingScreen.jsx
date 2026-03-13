@@ -14,7 +14,7 @@ export default function OnboardingScreen({ onComplete }) {
         <div className="logo-container">
           <div className="logo-kemenkes">
             <img 
-              src="/logo kemenkes tanjungpinang.jpeg" 
+              src="/logo-kemenkes-tanjungpinang.jpeg" 
               alt="Kemenkes BKK Tanjung Pinang" 
               style={{width: '200px', height: 'auto', borderRadius: '12px'}}
             />
