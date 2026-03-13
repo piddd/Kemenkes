@@ -19,8 +19,8 @@ export default function Sidebar({ currentStep, progress, onStepClick, isOpen, on
       
       <div className="sidebar-brand">
         <img 
-          src="/kemenkes.png" 
-          alt="Kemenkes" 
+          src="/logo kemenkes tanjungpinang.jpeg" 
+          alt="Kemenkes BKK Tanjung Pinang" 
           className="sidebar-logo"
           onError={(e) => e.target.style.display='none'} 
         />

@@ -13,14 +13,12 @@ export default function OnboardingScreen({ onComplete }) {
       <div className="onboarding-content">
         <div className="logo-container">
           <div className="logo-kemenkes">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-              <circle cx="40" cy="40" r="18" fill="#00BCD4"/>
-              <circle cx="80" cy="40" r="18" fill="#00BCD4"/>
-              <circle cx="40" cy="80" r="18" fill="#00BCD4"/>
-              <circle cx="80" cy="80" r="18" fill="#CDDC39"/>
-            </svg>
+            <img 
+              src="/logo kemenkes tanjungpinang.jpeg" 
+              alt="Kemenkes BKK Tanjung Pinang" 
+              style={{width: '200px', height: 'auto', borderRadius: '12px'}}
+            />
           </div>
-          <h1 className="app-title">Kemenkes</h1>
         </div>
 
         <div className="system-info">
