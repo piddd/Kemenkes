@@ -206,13 +206,6 @@ function App() {
         </body>
         </html>
       `);
-          </style>
-        </head>
-        <body>
-          ${html}
-        </body>
-        </html>
-      `);
       iframeDoc.close();
       
       // Wait for content to load, then print
