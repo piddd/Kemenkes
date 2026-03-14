@@ -328,7 +328,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           <div className="form-group">
             <label>Kepala Wilayah Kerja/Penanggung Jawab</label>
             <input value={petugas.namaWilker} onChange={e => updatePetugas('namaWilker', e.target.value)} placeholder="Dr. Andi Wijaya, M.Kes" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Kepala Wilker KKP</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Kepala Wilayah Kerja/Penanggung Jawab</small>
           </div>
           <div className="form-group">
             <label>NIP Kepala Wilker sesuai SK jabatan</label>
@@ -352,7 +352,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           <div className="form-group">
             <label>Ketua Tim Kerja Pengawasan Alat Angkut dan Barang</label>
             <input value={petugas.namaKetuaTim} onChange={e => updatePetugas('namaKetuaTim', e.target.value)} placeholder="Dr. Rini Kusuma, M.Sc" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Ketua Tim sesuai surat tugas</small>
+            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Ketua Tim Kerja Pengawasan Alat Angkut dan Barang</small>
           </div>
           <div className="form-group">
             <label>NIP Ketua Tim</label>
@@ -370,7 +370,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
                 ⚠️ {validationErrors.nipKetuaTim}
               </small>
             ) : (
-              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan (bukan surat tugas)</small>
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
             )}
           </div>
           <div className="form-group full">
