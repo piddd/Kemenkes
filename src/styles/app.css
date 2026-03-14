@@ -63,7 +63,7 @@ body {
 }
 .sidebar-logo {
   width: 200px;
-  height: 60px;
+  height: 80px;
   object-fit: contain;
   flex-shrink: 0;
   background: transparent;
@@ -1644,19 +1644,20 @@ body {
   padding: 0;
   z-index: 101;
   margin-right: 12px;
+  flex-shrink: 0;
 }
 
 .hamburger-btn span {
   display: block;
   height: 3px;
   width: 100%;
-  background: #17726d;
+  background: #ffffff;
   border-radius: 2px;
   transition: all 0.3s ease;
 }
 
 .hamburger-btn:hover span {
-  background: #135d59;
+  background: rgba(255,255,255,0.8);
 }
 
 /* Sidebar Close Button */
@@ -1676,7 +1677,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  z-index: 102;
+  z-index: 1000;
 }
 
 .sidebar-close:hover {
@@ -1692,7 +1693,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(0,0,0,0.5);
-  z-index: 98;
+  z-index: 998;
   animation: fadeIn 0.3s ease;
 }
 
@@ -1733,11 +1734,11 @@ body {
     white-space: normal;
     padding: 20px 12px;
     transition: left 0.3s ease;
-    z-index: 99;
+    z-index: 999;
     box-shadow: 2px 0 8px rgba(0,0,0,0.2);
   }
 
-  .sidebar-open {
+  .sidebar.sidebar-open {
     left: 0;
   }
 
@@ -1768,8 +1769,8 @@ body {
   
   .sidebar-logo {
     display: block; /* Show logo in vertical sidebar */
-    width: 36px;
-    height: 36px;
+    width: 180px;
+    height: 80px;
   }
 
   .progress-section {

@@ -1,7 +1,9 @@
 import React from 'react';
+import { validateNIP, validateIMO, validateDataUmum } from '../../utils/validation';
 
-export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetugas, nextStep }) {
+export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetugas, nextStep, showToast }) {
   const [rememberPetugas, setRememberPetugas] = React.useState(false);
+  const [validationErrors, setValidationErrors] = React.useState({});
 
   React.useEffect(() => {
     // Check if there's saved petugas data
@@ -42,6 +44,79 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
     }
   }, [petugas, rememberPetugas]);
 
+  // Real-time validation for NIP fields
+  const handleNIPChange = (field, value) => {
+    updatePetugas(field, value);
+    
+    // Clear error when user starts typing
+    if (validationErrors[field]) {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
+    }
+    
+    // Validate on blur or when complete
+    if (value && value.length === 18) {
+      if (!validateNIP(value)) {
+        setValidationErrors(prev => ({
+          ...prev,
+          [field]: 'NIP harus 18 digit angka'
+        }));
+      }
+    }
+  };
+
+  // Real-time validation for IMO
+  const handleIMOChange = (value) => {
+    updateKapal('nomorIMO', value);
+    
+    if (validationErrors.nomorIMO) {
+      setValidationErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.nomorIMO;
+        return newErrors;
+      });
+    }
+    
+    if (value && value.length === 7) {
+      if (!validateIMO(value)) {
+        setValidationErrors(prev => ({
+          ...prev,
+          nomorIMO: 'Nomor IMO harus 7 digit angka'
+        }));
+      }
+    }
+  };
+
+  // Validate before proceeding to next step
+  const handleNext = () => {
+    const validation = validateDataUmum(kapal, petugas);
+    
+    if (!validation.isValid) {
+      const errorMap = {};
+      validation.errors.forEach(err => {
+        errorMap[err.field] = err.message;
+      });
+      setValidationErrors(errorMap);
+      
+      showToast('Mohon perbaiki kesalahan pada form', 'error');
+      
+      // Scroll to first error
+      const firstErrorField = validation.errors[0].field;
+      const element = document.querySelector(`[name="${firstErrorField}"]`);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.focus();
+      }
+      return;
+    }
+    
+    setValidationErrors({});
+    nextStep();
+  };
+
   return (
     <div className="step-wrapper">
       <div className="card">
@@ -69,8 +144,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>Nomor IMO <em>(IMO Number)</em></label>
-            <input value={kapal.nomorIMO} onChange={e => updateKapal('nomorIMO', e.target.value)} placeholder="9234567" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>7 digit angka unik identitas kapal</small>
+            <input 
+              name="nomorIMO"
+              type="number"
+              value={kapal.nomorIMO} 
+              onChange={e => handleIMOChange(e.target.value)} 
+              placeholder="9234567"
+              maxLength={7}
+              style={validationErrors.nomorIMO ? {borderColor:'#ef4444'} : {}}
+            />
+            {validationErrors.nomorIMO ? (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#ef4444'}}>
+                ⚠️ {validationErrors.nomorIMO}
+              </small>
+            ) : (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>7 digit angka unik identitas kapal</small>
+            )}
           </div>
           <div className="form-group">
             <label>Nama Kapten <em>(Captain Name)</em></label>
@@ -171,8 +260,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>NIP Petugas 1</label>
-            <input type="number" value={petugas.nip1} onChange={e => updatePetugas('nip1', e.target.value)} placeholder="198501012010011001" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP ASN petugas</small>
+            <input 
+              name="nip1"
+              type="number" 
+              value={petugas.nip1} 
+              onChange={e => handleNIPChange('nip1', e.target.value)} 
+              placeholder="198501012010011001"
+              maxLength={18}
+              style={validationErrors.nip1 ? {borderColor:'#ef4444'} : {}}
+            />
+            {validationErrors.nip1 ? (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#ef4444'}}>
+                ⚠️ {validationErrors.nip1}
+              </small>
+            ) : (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP ASN petugas</small>
+            )}
           </div>
           <div className="form-group">
             <label>Nama Petugas 2</label>
@@ -181,8 +284,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>NIP Petugas 2</label>
-            <input type="number" value={petugas.nip2} onChange={e => updatePetugas('nip2', e.target.value)} placeholder="198602022011012002" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 1 petugas</small>
+            <input 
+              name="nip2"
+              type="number" 
+              value={petugas.nip2} 
+              onChange={e => handleNIPChange('nip2', e.target.value)} 
+              placeholder="198602022011012002"
+              maxLength={18}
+              style={validationErrors.nip2 ? {borderColor:'#ef4444'} : {}}
+            />
+            {validationErrors.nip2 ? (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#ef4444'}}>
+                ⚠️ {validationErrors.nip2}
+              </small>
+            ) : (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 1 petugas</small>
+            )}
           </div>
           <div className="form-group">
             <label>Nama Petugas 3</label>
@@ -191,8 +308,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>NIP Petugas 3</label>
-            <input type="number" value={petugas.nip3} onChange={e => updatePetugas('nip3', e.target.value)} placeholder="198703032012013003" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 2 petugas</small>
+            <input 
+              name="nip3"
+              type="number" 
+              value={petugas.nip3} 
+              onChange={e => handleNIPChange('nip3', e.target.value)} 
+              placeholder="198703032012013003"
+              maxLength={18}
+              style={validationErrors.nip3 ? {borderColor:'#ef4444'} : {}}
+            />
+            {validationErrors.nip3 ? (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#ef4444'}}>
+                ⚠️ {validationErrors.nip3}
+              </small>
+            ) : (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 2 petugas</small>
+            )}
           </div>
           <div className="form-group">
             <label>Kepala Wilayah Kerja/Penanggung Jawab</label>
@@ -201,8 +332,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>NIP Kepala Wilker sesuai SK jabatan</label>
-            <input type="number" value={petugas.nipWilker} onChange={e => updatePetugas('nipWilker', e.target.value)} placeholder="197501011998031001" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
+            <input 
+              name="nipWilker"
+              type="number" 
+              value={petugas.nipWilker} 
+              onChange={e => handleNIPChange('nipWilker', e.target.value)} 
+              placeholder="197501011998031001"
+              maxLength={18}
+              style={validationErrors.nipWilker ? {borderColor:'#ef4444'} : {}}
+            />
+            {validationErrors.nipWilker ? (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#ef4444'}}>
+                ⚠️ {validationErrors.nipWilker}
+              </small>
+            ) : (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
+            )}
           </div>
           <div className="form-group">
             <label>Ketua Tim Kerja Pengawasan Alat Angkut dan Barang</label>
@@ -211,8 +356,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>NIP Ketua Tim</label>
-            <input type="number" value={petugas.nipKetuaTim} onChange={e => updatePetugas('nipKetuaTim', e.target.value)} placeholder="197602022000032001" />
-            <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan (bukan surat tugas)</small>
+            <input 
+              name="nipKetuaTim"
+              type="number" 
+              value={petugas.nipKetuaTim} 
+              onChange={e => handleNIPChange('nipKetuaTim', e.target.value)} 
+              placeholder="197602022000032001"
+              maxLength={18}
+              style={validationErrors.nipKetuaTim ? {borderColor:'#ef4444'} : {}}
+            />
+            {validationErrors.nipKetuaTim ? (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#ef4444'}}>
+                ⚠️ {validationErrors.nipKetuaTim}
+              </small>
+            ) : (
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan (bukan surat tugas)</small>
+            )}
           </div>
           <div className="form-group full">
             <label>Nama Pelabuhan</label>
@@ -238,7 +397,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
       </div>
 
       <div className="step-actions">
-        <button className="btn-next" onClick={nextStep}>
+        <button className="btn-next" onClick={handleNext}>
           Lanjut ke Sanitasi Kapal →
         </button>
       </div>

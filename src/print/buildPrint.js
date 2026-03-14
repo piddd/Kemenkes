@@ -27,40 +27,53 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
   const ttdImg = (src) => src ? `<img src="${src}" style="max-height:48px;max-width:120px;object-fit:contain">` : '';
 
   function kop() {
-    return `<div class="doc-kop"><img src="/kop-header.png" alt="Kop"></div>`;
+    return `<div class="doc-kop"><img src="/logo-kop-terbaru.jpeg" alt="Kop Surat"></div>`;
   }
 
   function dataUmum() {
-    return `<div class="du-wrap"><strong>A.&nbsp; Data Umum / <em>General Data</em></strong>
-    <table class="nb" style="margin-top:4px;font-size:9pt"><tr><td class="du-left"><div style="line-height:1.5">
-    1. Nama Kapal <em>(Name Ship)</em> : ${dot(K.namaKapal,20)}<br>
-    2. Jenis Kapal <em>(Type of Ship)</em> : ${dot(K.jenisKapal,15)}<br>
-    3. Besar Kapal/ <em>Weight (GRT)</em> : ${dot(K.grt,10)}<br>
-    4. Datang Dari <em>(Last Port)</em> : ${dot(K.lastPort,15)}<br>
-    5. Tanggal/Jam Tiba : ${dot(K.tglTiba,15)} / ${dot(K.jamTiba,5)}<br>
-    <em style="margin-left:10px;font-size:8.5pt">(Date/Time of Arrival)</em><br>
-    6. Diperiksa Tanggal/Jam : ${dot(K.tglPeriksa,15)} / ${dot(K.jamPeriksa,5)}<br>
-    <em style="margin-left:10px;font-size:8.5pt">(Inspected date/Time)</em><br>
-    7. Jumlah Awak Kapal : ${dot(K.jumlahABK,8)}<br><em style="margin-left:10px;font-size:8.5pt">(Total Crew)</em><br>
-    8. Bendera <em>(Flag)</em> : ${dot(K.bendera,15)}
-    </div></td><td class="du-right"><div style="line-height:1.5">
-    9. Nomor IMO <em>(IMO Number)</em> : ${dot(K.nomorIMO,10)}<br><br>
-    10. Nama Pemilik/Agen : ${dot(K.pemilikAgen,18)}<br><em style="margin-left:14px;font-size:8.5pt">(Agent/Owner)</em><br>
-    11. Tujuan <em>(Next Port/ Bound For)</em> : ${dot(K.nextPort,12)}<br>
-    12. Tanggal/Jam Berangkat : ${dot(K.tglBerangkat,12)} / ${dot(K.jamBerangkat,5)}<br>
-    <em style="margin-left:14px;font-size:8.5pt">(Date/Time of Departure)</em><br>
-    13. Lokasi Sandar : ${dot(K.lokasiSandar,18)}<br><em style="margin-left:14px;font-size:8.5pt">(Berthing location)</em><br>
-    14. Jumlah penumpang : ${dot(K.jumlahPenumpang,8)}<br><em style="margin-left:14px;font-size:8.5pt">(Total Passanger)</em>
-    </div></td></tr></table></div>`;
+    return `<div class="du-wrap"><strong>A. Data Umum / <em>General Data</em></strong>
+    <table class="nb" style="width:100%;margin-top:4px">
+    <tr>
+      <td style="width:50%;vertical-align:top;padding-right:12px;border:none">
+        <div style="line-height:1.6">
+        1. Nama Kapal <em>(Name Ship)</em> : ${dot(K.namaKapal,15)}<br>
+        2. Jenis Kapal <em>(Type of Ship)</em> : ${dot(K.jenisKapal,12)}<br>
+        3. Besar Kapal <em>(Weight/GRT)</em> : ${dot(K.grt,10)}<br>
+        4. Datang Dari <em>(Last Port)</em> : ${dot(K.lastPort,12)}<br>
+        5. Tanggal/Jam Tiba<br>
+        &nbsp;&nbsp;&nbsp;<em>(Date/Time of Arrival)</em> : ${dot(K.tglTiba,10)} / ${dot(K.jamTiba,4)}<br>
+        6. Diperiksa Tanggal/Jam<br>
+        &nbsp;&nbsp;&nbsp;<em>(Inspected date/Time)</em> : ${dot(K.tglPeriksa,10)} / ${dot(K.jamPeriksa,4)}<br>
+        7. Jumlah Awak Kapal<br>
+        &nbsp;&nbsp;&nbsp;<em>(Total Crew)</em> : ${dot(K.jumlahABK,8)}<br>
+        8. Bendera <em>(Flag)</em> : ${dot(K.bendera,12)}
+        </div>
+      </td>
+      <td style="width:50%;vertical-align:top;padding-left:12px;border:none">
+        <div style="line-height:1.6">
+        9. Nomor IMO <em>(IMO Number)</em> : ${dot(K.nomorIMO,10)}<br>
+        10. Nama Pemilik/Agen<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>(Agent/Owner)</em> : ${dot(K.pemilikAgen,15)}<br>
+        11. Tujuan <em>(Next Port/Bound For)</em> : ${dot(K.nextPort,12)}<br>
+        12. Tanggal/Jam Berangkat<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>(Date/Time of Departure)</em> : ${dot(K.tglBerangkat,10)} / ${dot(K.jamBerangkat,4)}<br>
+        13. Lokasi Sandar<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>(Berthing location)</em> : ${dot(K.lokasiSandar,15)}<br>
+        14. Jumlah Penumpang<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>(Total Passenger)</em> : ${dot(K.jumlahPenumpang,8)}
+        </div>
+      </td>
+    </tr>
+    </table></div>`;
   }
 
   function tindakan(k) {
     const f = FORMS[k]; if (!f.tindakan) return '';
-    return `<div class="ti-wrap"><strong>A.&nbsp; Tindakan ${f.tindakanType}</strong>
-    <table class="nb" style="margin-top:4px">
-    <tr><td style="width:160px">Tindakan ${f.tindakanType}</td><td>: <strong><em>${f.tindakan}</em></strong></td></tr>
-    <tr><td>Pada hari/tanggal</td><td>: ${K.tglPeriksaDenganHari}</td></tr>
-    <tr><td>Pemeriksa</td><td>: ${P.nama1}</td></tr></table></div>`;
+    return `<div class="ti-wrap"><strong>A. Tindakan ${f.tindakanType}</strong>
+    <table class="nb">
+    <tr><td style="width:150px;padding:1px 0">Tindakan ${f.tindakanType}</td><td style="padding:1px 0">: <strong><em>${f.tindakan}</em></strong></td></tr>
+    <tr><td style="padding:1px 0">Pada hari/tanggal</td><td style="padding:1px 0">: ${K.tglPeriksaDenganHari}</td></tr>
+    <tr><td style="padding:1px 0">Pemeriksa</td><td style="padding:1px 0">: ${P.nama1}</td></tr></table></div>`;
   }
 
   function ckTable(k) {
@@ -87,45 +100,54 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
   }
 
   function ttdSanitasi() {
-    return `<table class="ts nb"><tr><td class="tl" style="vertical-align:top">
-    Mengetahui <em>(Knowledge by)</em><br>Nakhoda/Perwira Jaga<br><em>Master / Officer on charge</em>
-    <div style="min-height:70px;margin:8px 0;position:relative;width:120px">
-    ${ttdImg(ttd.capKapal) ? `<img src="${ttd.capKapal}" style="position:absolute;top:0;left:0;max-height:70px;max-width:60px;object-fit:contain;z-index:1">` : ''}
-    ${ttdImg(ttd.nakhoda) ? `<img src="${ttd.nakhoda}" style="position:absolute;top:0;left:40px;max-height:70px;max-width:80px;object-fit:contain;z-index:2">` : ''}
+    return `<table class="ts nb"><tr><td class="tl">
+    <div style="font-size:8.5pt;line-height:1.2">Mengetahui <em>(Knowledge by)</em><br>Nakhoda/Perwira Jaga<br><em>Master / Officer on charge</em></div>
+    <div style="min-height:45px;margin:6px 0;position:relative;width:120px">
+    ${ttdImg(ttd.capKapal) ? `<img src="${ttd.capKapal}" style="position:absolute;top:0;left:0;max-height:45px;max-width:55px;object-fit:contain;z-index:1">` : ''}
+    ${ttdImg(ttd.nakhoda) ? `<img src="${ttd.nakhoda}" style="position:absolute;top:0;left:45px;max-height:45px;max-width:75px;object-fit:contain;z-index:2">` : ''}
     </div>
     <div class="tln"></div>
-    ${dot(K.namaKapten,25)}
-    </td><td style="vertical-align:top">${dot(P.pelabuhan||'Tanjung Priok',20)}, ${K.tglPeriksa}<br>Petugas / <em>Officer</em><br><br>
-    <div style="min-height:55px;margin-bottom:4px;display:flex;align-items:center;justify-content:flex-start">
-    ${ttdImg(ttd.p1) ? `<div style="width:100px;height:55px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:50px;max-width:100px;object-fit:contain"></div>` : '<div style="width:100px;height:55px"></div>'}
+    <div style="font-size:8.5pt;margin-top:2px">${dot(K.namaKapten,22)}</div>
+    </td><td style="vertical-align:top;padding-left:12px">
+    <div style="font-size:8.5pt;margin-bottom:4px">${dot(P.pelabuhan||'Tanjung Priok',18)}, ${K.tglPeriksa}<br>Petugas / <em>Officer</em></div>
+    <div style="margin-bottom:6px">
+      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p1) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
+      </div>
+      <div style="font-size:8.5pt">1. ${P.nama1}<br>NIP. ${P.nip1}</div>
     </div>
-    1. ${P.nama1}<br>NIP. ${P.nip1}<br><br>
-    <div style="min-height:55px;margin-bottom:4px;display:flex;align-items:center;justify-content:flex-start">
-    ${ttdImg(ttd.p2) ? `<div style="width:100px;height:55px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:50px;max-width:100px;object-fit:contain"></div>` : '<div style="width:100px;height:55px"></div>'}
+    <div style="margin-bottom:6px">
+      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p2) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
+      </div>
+      <div style="font-size:8.5pt">2. ${P.nama2}<br>NIP. ${P.nip2}</div>
     </div>
-    2. ${P.nama2}<br>NIP. ${P.nip2}<br><br>
-    <div style="min-height:55px;margin-bottom:4px;display:flex;align-items:center;justify-content:flex-start">
-    ${ttdImg(ttd.p3) ? `<div style="width:100px;height:55px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p3}" style="max-height:50px;max-width:100px;object-fit:contain"></div>` : '<div style="width:100px;height:55px"></div>'}
+    <div style="margin-bottom:4px">
+      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p3) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p3}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
+      </div>
+      <div style="font-size:8.5pt">3. ${dot(P.nama3,22)}<br>NIP. ${dot(P.nip3,18)}</div>
     </div>
-    3. ${dot(P.nama3,25)}<br>NIP. ${dot(P.nip3,20)}
     </td></tr></table>`;
   }
 
   function ttdSingle() {
-    return `<table class="ts nb"><tr><td class="tl" style="vertical-align:top">
-    Mengetahui <em>(Knowledge by)</em><br>Nakhoda/Perwira Jaga<br><em>Master / Officer on charge</em>
-    <div style="min-height:70px;margin:8px 0;position:relative;width:120px">
-    ${ttdImg(ttd.capKapal) ? `<img src="${ttd.capKapal}" style="position:absolute;top:0;left:0;max-height:70px;max-width:60px;object-fit:contain;z-index:1">` : ''}
-    ${ttdImg(ttd.nakhoda) ? `<img src="${ttd.nakhoda}" style="position:absolute;top:0;left:40px;max-height:70px;max-width:80px;object-fit:contain;z-index:2">` : ''}
+    return `<table class="ts nb"><tr><td class="tl">
+    <div style="font-size:8.5pt;line-height:1.2">Mengetahui <em>(Knowledge by)</em><br>Nakhoda/Perwira Jaga<br><em>Master / Officer on charge</em></div>
+    <div style="min-height:45px;margin:6px 0;position:relative;width:120px">
+    ${ttdImg(ttd.capKapal) ? `<img src="${ttd.capKapal}" style="position:absolute;top:0;left:0;max-height:45px;max-width:55px;object-fit:contain;z-index:1">` : ''}
+    ${ttdImg(ttd.nakhoda) ? `<img src="${ttd.nakhoda}" style="position:absolute;top:0;left:45px;max-height:45px;max-width:75px;object-fit:contain;z-index:2">` : ''}
     </div>
     <div class="tln"></div>
-    ${dot(K.namaKapten,25)}
-    </td><td style="vertical-align:top">${dot(P.pelabuhan||'Tanjung Priok',20)}, ${K.tglPeriksa}<br>Petugas pemeriksa/ <em>Officer</em><br>
-    <div style="min-height:60px;margin:8px 0;display:flex;align-items:center;justify-content:flex-start">
-    ${ttdImg(ttd.p1) ? `<div style="width:100px;height:60px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:50px;max-width:100px;object-fit:contain"></div>` : '<div style="width:100px;height:60px"></div>'}
+    <div style="font-size:8.5pt;margin-top:2px">${dot(K.namaKapten,22)}</div>
+    </td><td style="vertical-align:top;padding-left:12px">
+    <div style="font-size:8.5pt;margin-bottom:4px">${dot(P.pelabuhan||'Tanjung Priok',18)}, ${K.tglPeriksa}<br>Petugas pemeriksa / <em>Officer</em></div>
+    <div style="min-height:45px;margin:6px 0;display:flex;align-items:center;justify-content:flex-start">
+    ${ttdImg(ttd.p1) ? `<div style="width:90px;height:45px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:43px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:45px"></div>'}
     </div>
     <div class="tln"></div>
-    ${P.nama1}<br>NIP. ${P.nip1}</td></tr></table>`;
+    <div style="font-size:8.5pt;margin-top:2px">${P.nama1}<br>NIP. ${P.nip1}</div>
+    </td></tr></table>`;
   }
 
   function ttdLaporan() {
@@ -214,7 +236,7 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
     <div class="doc-title">SUPERVISI CHECKLIST PEMERIKSAAN SANITASI KAPAL</div>
     <div class="doc-subtitle"><em>(INSPECTION OF SHIP SANITATION)</em></div>
     ${dataUmum()}
-    <p class="jp"><strong>B.&nbsp; Jenis Pemeriksaan/<em>Type Inspection</em></strong>&nbsp;&nbsp;: Sanitasi Kapal/<em>Ship Sanitation</em></p>
+    <p class="jp"><strong>B. Jenis Pemeriksaan/<em>Type Inspection</em></strong> : Sanitasi Kapal/<em>Ship Sanitation</em></p>
     ${ckTable('sanitasi')}${warning()}${ttdSanitasi()}</div>`;
   }
 
@@ -282,8 +304,12 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
     
     return `<div class="page">${kop()}
     <div class="doc-title">DOKUMENTASI PEMERIKSAAN KAPAL</div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px">
-    ${fotoDokumentasi.map(foto => `<div style="border:2px solid #000;padding:4px"><img src="${foto}" style="width:100%;height:auto;display:block"></div>`).join('')}
+    <div class="doc-subtitle"><em>(Ship Inspection Documentation)</em></div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px;padding:0 8px">
+    ${fotoDokumentasi.map((foto, idx) => `<div style="border:1.5px solid #000;padding:4px;text-align:center;page-break-inside:avoid">
+      <img src="${foto}" style="width:100%;height:auto;max-height:240px;object-fit:contain;display:block;margin:0 auto">
+      <div style="margin-top:4px;font-size:8pt;font-weight:bold">Foto ${idx+1}</div>
+    </div>`).join('')}
     </div></div>`;
   }
 

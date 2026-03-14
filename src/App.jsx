@@ -10,14 +10,17 @@ import StepVektor from './components/steps/StepVektor';
 import StepLaporan from './components/steps/StepLaporan';
 import StepSubmit from './components/steps/StepSubmit';
 import OnboardingScreen from './components/OnboardingScreen';
+import Toast from './components/Toast';
 import { FORM_KEYS } from './data/forms';
 import { buildPrintHTML } from './print/buildPrint';
+import { saveToStorage, loadFromStorage, checkStorageQuota, STORAGE_KEYS } from './utils/storage';
 import './styles/app.css';
 
 function App() {
   const [showOnboarding, setShowOnboarding] = useState(true);
   const [currentStep, setCurrentStep] = useState(1);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [toast, setToast] = useState(null);
 
   // Shared state
   const [kapal, setKapal] = useState({
@@ -59,31 +62,45 @@ function App() {
 
   const [rekAkhir, setRekAkhir] = useState('SSCEC');
 
+  // Toast helper
+  const showToast = useCallback((message, type = 'info') => {
+    setToast({ message, type });
+  }, []);
+
+  const closeToast = useCallback(() => {
+    setToast(null);
+  }, []);
+
   // Load saved data from localStorage on mount
   useEffect(() => {
-    const savedData = localStorage.getItem('sscec-data');
+    const savedData = loadFromStorage(STORAGE_KEYS.DATA);
     if (savedData) {
-      try {
-        const data = JSON.parse(savedData);
-        if (data.kapal) setKapal(data.kapal);
-        if (data.petugas) setPetugas(data.petugas);
-        if (data.ttd) setTtd(data.ttd);
-        if (data.checklist) setChecklist(data.checklist);
-        if (data.rekomendasi) setRekomendasi(data.rekomendasi);
-        if (data.catatan) setCatatan(data.catatan);
-        if (data.rekAkhir) setRekAkhir(data.rekAkhir);
-        if (data.fotoDokumentasi) setFotoDokumentasi(data.fotoDokumentasi);
-      } catch {
-        // Silently fail if data is corrupted
-      }
+      if (savedData.kapal) setKapal(savedData.kapal);
+      if (savedData.petugas) setPetugas(savedData.petugas);
+      if (savedData.ttd) setTtd(savedData.ttd);
+      if (savedData.checklist) setChecklist(savedData.checklist);
+      if (savedData.rekomendasi) setRekomendasi(savedData.rekomendasi);
+      if (savedData.catatan) setCatatan(savedData.catatan);
+      if (savedData.rekAkhir) setRekAkhir(savedData.rekAkhir);
+      if (savedData.fotoDokumentasi) setFotoDokumentasi(savedData.fotoDokumentasi);
     }
-  }, []);
+
+    // Check storage quota on load
+    const quota = checkStorageQuota();
+    if (quota.isNearLimit) {
+      showToast(`Penyimpanan hampir penuh (${quota.percentage}%). Pertimbangkan menghapus foto lama.`, 'warning');
+    }
+  }, [showToast]);
 
   // Auto-save data to localStorage whenever it changes
   useEffect(() => {
     const data = { kapal, petugas, ttd, checklist, rekomendasi, catatan, rekAkhir, fotoDokumentasi };
-    localStorage.setItem('sscec-data', JSON.stringify(data));
-  }, [kapal, petugas, ttd, checklist, rekomendasi, catatan, rekAkhir, fotoDokumentasi]);
+    const result = saveToStorage(STORAGE_KEYS.DATA, data);
+    
+    if (!result.success) {
+      showToast(result.error, 'error');
+    }
+  }, [kapal, petugas, ttd, checklist, rekomendasi, catatan, rekAkhir, fotoDokumentasi, showToast]);
 
   // Update functions
   const updateKapal = useCallback((field, value) => {
@@ -123,7 +140,10 @@ function App() {
   }, []);
 
   const handleFotoUpload = useCallback((files) => {
-    if (!files || files.length === 0) return;
+    if (!files || files.length === 0) {
+      showToast('Tidak ada file yang dipilih', 'warning');
+      return;
+    }
     
     const newFotos = Array.from(files).map(file => {
       return new Promise((resolve, reject) => {
@@ -141,12 +161,13 @@ function App() {
     Promise.all(newFotos)
       .then(results => {
         setFotoDokumentasi(prev => [...prev, ...results]);
+        showToast(`${results.length} foto berhasil ditambahkan`, 'success');
       })
       .catch(error => {
         console.error('Error uploading photos:', error);
-        alert('Gagal upload beberapa foto. Mohon coba lagi.');
+        showToast('Gagal upload beberapa foto. Mohon coba lagi.', 'error');
       });
-  }, []);
+  }, [showToast]);
 
   const handleFotoRemove = useCallback((index) => {
     setFotoDokumentasi(prev => prev.filter((_, i) => i !== index));
@@ -241,7 +262,7 @@ function App() {
   const handleClearData = useCallback(() => {
     if (confirm('Apakah Anda yakin ingin menghapus semua data? Tindakan ini tidak dapat dibatalkan.')) {
       // Clear localStorage
-      localStorage.removeItem('sscec-data');
+      localStorage.removeItem(STORAGE_KEYS.DATA);
       
       // Reset all state to initial values
       setKapal({
@@ -272,9 +293,9 @@ function App() {
       });
       setRekAkhir('SSCEC');
       
-      alert('Semua data berhasil dihapus!');
+      showToast('Semua data berhasil dihapus!', 'success');
     }
-  }, []);
+  }, [showToast]);
 
   const nextStep = () => {
     if (currentStep < 9) setCurrentStep(currentStep + 1);
@@ -325,10 +346,19 @@ function App() {
     rekAkhir, setRekAkhir,
     fotoDokumentasi, onFotoUpload: handleFotoUpload, onFotoRemove: handleFotoRemove,
     nextStep, prevStep,
+    showToast,
   };
 
   return (
     <div className="app-layout">
+      {toast && (
+        <Toast 
+          message={toast.message} 
+          type={toast.type} 
+          onClose={closeToast}
+        />
+      )}
+      
       <Sidebar 
         currentStep={currentStep} 
         progress={progress}

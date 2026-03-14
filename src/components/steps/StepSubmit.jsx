@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import SignaturePad from '../SignaturePad';
+import { validateImageFile, validateMultipleFiles, FILE_CONSTANTS } from '../../utils/fileValidation';
 
 export default function StepSubmit({ 
   ttd, onTtdUpload, onTtdClear, 
   fotoDokumentasi, onFotoUpload, onFotoRemove,
-  prevStep 
+  prevStep,
+  showToast
 }) {
   const [processing, setProcessing] = useState({});
   const [removeBackground, setRemoveBackground] = useState(true);
@@ -13,9 +15,18 @@ export default function StepSubmit({
     const file = e.target.files[0];
     if (!file) return;
     
+    // Validate file
+    const validation = validateImageFile(file);
+    if (!validation.isValid) {
+      showToast(validation.error, 'error');
+      e.target.value = ''; // Reset input
+      return;
+    }
+    
     if (!removeBackground) {
       // Upload langsung tanpa remove background
       onTtdUpload(key, file);
+      showToast('Tanda tangan berhasil diupload', 'success');
       return;
     }
     
@@ -55,16 +66,18 @@ export default function StepSubmit({
             const processedFile = new File([blob], file.name, { type: 'image/png' });
             onTtdUpload(key, processedFile);
             setProcessing(prev => ({ ...prev, [key]: false }));
+            showToast('Tanda tangan berhasil diupload (background dihapus)', 'success');
           }, 'image/png');
         };
         img.src = event.target.result;
       };
       
       reader.readAsDataURL(file);
-    } catch {
+    } catch (error) {
       // Fallback to original file if processing fails
       onTtdUpload(key, file);
       setProcessing(prev => ({ ...prev, [key]: false }));
+      showToast('Background removal gagal, file diupload tanpa proses', 'warning');
     }
   };
 
@@ -72,6 +85,7 @@ export default function StepSubmit({
     const blob = dataURLtoBlob(dataUrl);
     const file = new File([blob], 'signature.png', { type: 'image/png' });
     onTtdUpload(key, file);
+    showToast('Tanda tangan berhasil disimpan', 'success');
   };
 
   const dataURLtoBlob = (dataurl) => {
@@ -84,6 +98,34 @@ export default function StepSubmit({
       u8arr[n] = bstr.charCodeAt(n);
     }
     return new Blob([u8arr], { type: mime });
+  };
+
+  const handlePhotoUpload = (e) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    // Validate files
+    const validation = validateMultipleFiles(files, fotoDokumentasi.length);
+    
+    if (!validation.isValid) {
+      showToast(validation.errors[0], 'error');
+      e.target.value = ''; // Reset input
+      return;
+    }
+
+    // Show warnings if some files were rejected
+    if (validation.errors.length > 0) {
+      validation.errors.forEach(error => {
+        showToast(error, 'warning');
+      });
+    }
+
+    // Upload valid files
+    if (validation.validFiles.length > 0) {
+      onFotoUpload(validation.validFiles);
+    }
+
+    e.target.value = ''; // Reset input
   };
 
   return (
@@ -373,14 +415,19 @@ export default function StepSubmit({
       <div className="card">
         <h3 className="card-title">Dokumentasi Foto</h3>
         <div style={{marginBottom:16}}>
-          <label style={{fontSize:11,color:'#64748b',display:'block',marginBottom:8}}>Upload foto dokumentasi pemeriksaan kapal:</label>
+          <label style={{fontSize:11,color:'#64748b',display:'block',marginBottom:8}}>
+            Upload foto dokumentasi pemeriksaan kapal (Maks {FILE_CONSTANTS.MAX_PHOTO_COUNT} foto, {FILE_CONSTANTS.MAX_FILE_SIZE_MB}MB per file):
+          </label>
           <input 
             type="file" 
             accept="image/*" 
             multiple 
-            onChange={(e) => onFotoUpload(e.target.files)}
+            onChange={handlePhotoUpload}
             style={{fontSize:11}}
           />
+          <div style={{marginTop:8,fontSize:11,color:'#64748b'}}>
+            📊 Foto saat ini: {fotoDokumentasi.length} / {FILE_CONSTANTS.MAX_PHOTO_COUNT}
+          </div>
         </div>
         {fotoDokumentasi.length > 0 && (
           <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(150px,1fr))',gap:12,marginTop:16}}>
@@ -388,7 +435,10 @@ export default function StepSubmit({
               <div key={idx} style={{position:'relative',border:'2px solid #e2e8f0',borderRadius:8,padding:4}}>
                 <img src={foto} alt={`Foto ${idx+1}`} style={{width:'100%',height:120,objectFit:'cover',borderRadius:4}} />
                 <button 
-                  onClick={() => onFotoRemove(idx)}
+                  onClick={() => {
+                    onFotoRemove(idx);
+                    showToast('Foto berhasil dihapus', 'info');
+                  }}
                   style={{
                     position:'absolute',top:8,right:8,
                     background:'#ef4444',color:'#fff',border:'none',
