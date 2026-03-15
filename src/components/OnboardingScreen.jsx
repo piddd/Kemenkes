@@ -22,7 +22,7 @@ export default function OnboardingScreen({ onComplete }) {
         </div>
 
         <div className="system-info">
-          <h2>SISTEM INFORMASI INSPEKSI SANITASI KAPAL</h2>
+          <h2>FORMULIR INSPEKSI SANITASI KAPAL</h2>
           <p>MINISTRY OF HEALTH REPUBLIC OF INDONESIA</p>
         </div>
 
@@ -33,7 +33,7 @@ export default function OnboardingScreen({ onComplete }) {
         </div>
 
         <div className="footer-info">
-          <p>BKK Tanjung Pinang</p>
+          <p>Balai Kekarantinaan Kesehatan Kelas I Tanjungpinang</p>
           <p className="version">v1.0.0</p>
         </div>
       </div>
