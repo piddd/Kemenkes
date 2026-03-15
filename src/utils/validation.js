@@ -4,14 +4,15 @@
  */
 
 /**
- * Validate NIP (Nomor Induk Pegawai) - must be exactly 18 digits
+ * Validate NIP (Nomor Induk Pegawai) - must be numbers only
  * @param {string} nip - NIP to validate
  * @returns {boolean} - true if valid
  */
 export const validateNIP = (nip) => {
   if (!nip) return true; // Optional field
   const nipStr = String(nip).replace(/\s/g, '');
-  return /^\d{18}$/.test(nipStr);
+  // Only check if it's all numbers, no length requirement
+  return /^\d+$/.test(nipStr);
 };
 
 /**
@@ -58,14 +59,15 @@ export const validatePositiveNumber = (value) => {
 };
 
 /**
- * Validate IMO number (7 digits)
+ * Validate IMO number (allows alphanumeric - letters and numbers)
  * @param {string} imo - IMO number
  * @returns {boolean} - true if valid
  */
 export const validateIMO = (imo) => {
   if (!imo) return true;
+  // Allow any alphanumeric input (letters and numbers)
   const imoStr = String(imo).replace(/\s/g, '');
-  return /^\d{7}$/.test(imoStr);
+  return /^[a-zA-Z0-9]+$/.test(imoStr);
 };
 
 /**
@@ -77,8 +79,8 @@ export const validateIMO = (imo) => {
 export const getValidationMessage = (field, type) => {
   const messages = {
     required: `${field} wajib diisi`,
-    nip: 'NIP harus 18 digit angka',
-    imo: 'Nomor IMO harus 7 digit angka',
+    nip: 'NIP harus angka saja',
+    imo: 'Nomor IMO harus berisi huruf/angka saja',
     positive: `${field} harus lebih dari 0`,
     dateFuture: 'Tanggal tidak boleh di masa depan',
     dateRange: 'Tanggal tiba harus sebelum tanggal berangkat',

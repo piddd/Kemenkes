@@ -57,14 +57,12 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
       });
     }
     
-    // Validate on blur or when complete
-    if (value && value.length === 18) {
-      if (!validateNIP(value)) {
-        setValidationErrors(prev => ({
-          ...prev,
-          [field]: 'NIP harus 18 digit angka'
-        }));
-      }
+    // Validate immediately if not empty
+    if (value && !validateNIP(value)) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [field]: 'NIP harus angka saja'
+      }));
     }
   };
 
@@ -72,6 +70,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
   const handleIMOChange = (value) => {
     updateKapal('nomorIMO', value);
     
+    // Clear error when user starts typing
     if (validationErrors.nomorIMO) {
       setValidationErrors(prev => {
         const newErrors = { ...prev };
@@ -80,13 +79,12 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
       });
     }
     
-    if (value && value.length === 7) {
-      if (!validateIMO(value)) {
-        setValidationErrors(prev => ({
-          ...prev,
-          nomorIMO: 'Nomor IMO harus 7 digit angka'
-        }));
-      }
+    // Validate immediately if not empty
+    if (value && !validateIMO(value)) {
+      setValidationErrors(prev => ({
+        ...prev,
+        nomorIMO: 'Nomor IMO harus berisi huruf/angka saja'
+      }));
     }
   };
 
@@ -101,9 +99,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
       });
       setValidationErrors(errorMap);
       
-      showToast('Mohon perbaiki kesalahan pada form', 'error');
-      
-      // Scroll to first error
+      // Scroll to first error (no toast - inline errors are enough)
       const firstErrorField = validation.errors[0].field;
       const element = document.querySelector(`[name="${firstErrorField}"]`);
       if (element) {
@@ -146,11 +142,10 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
             <label>Nomor IMO <em>(IMO Number)</em></label>
             <input 
               name="nomorIMO"
-              type="number"
+              type="text"
               value={kapal.nomorIMO} 
               onChange={e => handleIMOChange(e.target.value)} 
-              placeholder="9234567"
-              maxLength={7}
+              placeholder="IMO9234567 atau 9234567"
               style={validationErrors.nomorIMO ? {borderColor:'#ef4444'} : {}}
             />
             {validationErrors.nomorIMO ? (
@@ -158,7 +153,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
                 ⚠️ {validationErrors.nomorIMO}
               </small>
             ) : (
-              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>7 digit angka unik identitas kapal</small>
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor IMO kapal (bisa pakai huruf dan angka)</small>
             )}
           </div>
           <div className="form-group">
@@ -274,7 +269,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
                 ⚠️ {validationErrors.nip1}
               </small>
             ) : (
-              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP ASN petugas</small>
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP ASN petugas (angka saja)</small>
             )}
           </div>
           <div className="form-group">
@@ -346,7 +341,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
                 ⚠️ {validationErrors.nipWilker}
               </small>
             ) : (
-              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP sesuai SK jabatan (angka saja)</small>
             )}
           </div>
           <div className="form-group">
@@ -370,7 +365,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
                 ⚠️ {validationErrors.nipKetuaTim}
               </small>
             ) : (
-              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>18 digit NIP sesuai SK jabatan</small>
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>NIP sesuai SK jabatan (angka saja)</small>
             )}
           </div>
           <div className="form-group full">
