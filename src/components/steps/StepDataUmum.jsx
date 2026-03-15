@@ -88,7 +88,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
     }
   };
 
-  // Validate before proceeding to next step
+  // Allow navigation without blocking, just show warnings
   const handleNext = () => {
     const validation = validateDataUmum(kapal, petugas);
     
@@ -98,18 +98,12 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
         errorMap[err.field] = err.message;
       });
       setValidationErrors(errorMap);
-      
-      // Scroll to first error (no toast - inline errors are enough)
-      const firstErrorField = validation.errors[0].field;
-      const element = document.querySelector(`[name="${firstErrorField}"]`);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        element.focus();
-      }
-      return;
+      // Don't block navigation - just show inline warnings
+    } else {
+      setValidationErrors({});
     }
     
-    setValidationErrors({});
+    // Always proceed to next step
     nextStep();
   };
 
