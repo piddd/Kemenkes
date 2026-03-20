@@ -23,7 +23,6 @@ export default function OnboardingScreen({ onComplete }) {
 
         <div className="system-info">
           <h2>FORMULIR INSPEKSI SANITASI KAPAL</h2>
-          <p>MINISTRY OF HEALTH REPUBLIC OF INDONESIA</p>
         </div>
 
         <div className="tap-to-start">
