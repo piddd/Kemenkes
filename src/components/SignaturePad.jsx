@@ -10,7 +10,7 @@ export default function SignaturePad({ label, value, onSave, onClear }) {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 1.5;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
   }, [showPad]);
@@ -26,8 +26,12 @@ export default function SignaturePad({ label, value, onSave, onClear }) {
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
+    // Calculate scale factor
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (clientX - rect.left) * scaleX;
+    const y = (clientY - rect.top) * scaleY;
     ctx.beginPath();
     ctx.moveTo(x, y);
   };
@@ -45,8 +49,12 @@ export default function SignaturePad({ label, value, onSave, onClear }) {
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
+    // Calculate scale factor
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = (clientX - rect.left) * scaleX;
+    const y = (clientY - rect.top) * scaleY;
     ctx.lineTo(x, y);
     ctx.stroke();
   };

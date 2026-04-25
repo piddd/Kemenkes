@@ -141,25 +141,12 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
     <div class="tln"></div>
     <div style="font-size:8.5pt;margin-top:2px">${dot(K.namaKapten,22)}</div>
     </td><td style="vertical-align:top;padding-left:12px">
-    <div style="font-size:8.5pt;margin-bottom:4px">${dot(P.pelabuhan||'Tanjung Priok',18)}, ${K.tglPeriksa}<br>Petugas / <em>Officer</em></div>
-    <div style="margin-bottom:6px">
-      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
-      ${ttdImg(ttd.p1) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
-      </div>
-      <div style="font-size:8.5pt">1. ${dot(P.nama1,22)}<br>NIP. ${dot(P.nip1,18)}</div>
+    <div style="font-size:8.5pt;margin-bottom:4px">${dot(P.pelabuhan||'Tanjung Priok',18)}, ${K.tglPeriksa}<br>Petugas pemeriksa / <em>Officer</em></div>
+    <div style="min-height:45px;margin:6px 0;display:flex;align-items:center;justify-content:flex-start">
+    ${ttdImg(ttd.p1) ? `<div style="width:90px;height:45px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:43px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:45px"></div>'}
     </div>
-    <div style="margin-bottom:6px">
-      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
-      ${ttdImg(ttd.p2) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
-      </div>
-      <div style="font-size:8.5pt">2. ${dot(P.nama2,22)}<br>NIP. ${dot(P.nip2,18)}</div>
-    </div>
-    <div style="margin-bottom:4px">
-      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
-      ${ttdImg(ttd.p3) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p3}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
-      </div>
-      <div style="font-size:8.5pt">3. ${dot(P.nama3,22)}<br>NIP. ${dot(P.nip3,18)}</div>
-    </div>
+    <div class="tln"></div>
+    <div style="font-size:8.5pt;margin-top:2px">${dot(P.nama1,22)}<br>NIP. ${dot(P.nip1,18)}</div>
     </td></tr></table>`;
   }
 
