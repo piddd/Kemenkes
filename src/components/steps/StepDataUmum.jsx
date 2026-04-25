@@ -114,22 +114,22 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
         <div className="form-grid">
           <div className="form-group">
             <label>Nama Kapal <em>(Ship Name)</em></label>
-            <input value={kapal.namaKapal} onChange={e => updateKapal('namaKapal', e.target.value)} placeholder="MV Sinar Batam" />
+            <input value={kapal.namaKapal} onChange={e => updateKapal('namaKapal', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama resmi kapal sesuai dokumen</small>
           </div>
           <div className="form-group">
             <label>Jenis Kapal <em>(Type of Ship)</em></label>
-            <input value={kapal.jenisKapal} onChange={e => updateKapal('jenisKapal', e.target.value)} placeholder="Cargo" />
+            <input value={kapal.jenisKapal} onChange={e => updateKapal('jenisKapal', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Pilih sesuai klasifikasi kapal</small>
           </div>
           <div className="form-group">
             <label>Besar Kapal <em>(Weight) (GRT)</em></label>
-            <input type="number" value={kapal.grt} onChange={e => updateKapal('grt', e.target.value)} placeholder="8500" />
+            <input type="number" value={kapal.grt} onChange={e => updateKapal('grt', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Gross Tonnage tercantum di Surat Ukur</small>
           </div>
           <div className="form-group">
             <label>Bendera <em>(Flag)</em></label>
-            <input value={kapal.bendera} onChange={e => updateKapal('bendera', e.target.value)} placeholder="Indonesia" />
+            <input value={kapal.bendera} onChange={e => updateKapal('bendera', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Negara registrasi kapal</small>
           </div>
           <div className="form-group">
@@ -138,8 +138,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
               name="nomorIMO"
               type="text"
               value={kapal.nomorIMO} 
-              onChange={e => handleIMOChange(e.target.value)} 
-              placeholder="IMO9234567 atau 9234567"
+              onChange={e => handleIMOChange(e.target.value)}     
               style={validationErrors.nomorIMO ? {borderColor:'#ef4444'} : {}}
             />
             {validationErrors.nomorIMO ? (
@@ -147,42 +146,42 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
                 ⚠️ {validationErrors.nomorIMO}
               </small>
             ) : (
-              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor IMO kapal (bisa pakai huruf dan angka)</small>
+              <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor IMO kapal (semua karakter diperbolehkan)</small>
             )}
           </div>
           <div className="form-group">
             <label>Nama Kapten <em>(Captain Name)</em></label>
-            <input value={kapal.namaKapten} onChange={e => updateKapal('namaKapten', e.target.value)} placeholder="Capt. John Smith" />
+            <input value={kapal.namaKapten} onChange={e => updateKapal('namaKapten', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap sesuai Sertifikat Kompetensi</small>
           </div>
           <div className="form-group">
             <label>Pemilik/Agen <em>(Owner/Agent)</em></label>
-            <input value={kapal.pemilikAgen} onChange={e => updateKapal('pemilikAgen', e.target.value)} placeholder="PT Pelayaran Nasional" />
+            <input value={kapal.pemilikAgen} onChange={e => updateKapal('pemilikAgen', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama perusahaan pelayaran atau agen lokal</small>
           </div>
           <div className="form-group">
             <label>Jumlah ABK <em>(Total Crew)</em></label>
-            <input type="number" value={kapal.jumlahABK} onChange={e => updateKapal('jumlahABK', e.target.value)} placeholder="25" />
+            <input type="number" value={kapal.jumlahABK} onChange={e => updateKapal('jumlahABK', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Total awak kapal aktif di atas kapal</small>
           </div>
           <div className="form-group">
             <label>Jumlah Penumpang <em>(Total Passenger)</em></label>
-            <input type="number" value={kapal.jumlahPenumpang} onChange={e => updateKapal('jumlahPenumpang', e.target.value)} placeholder="0" />
+            <input type="number" value={kapal.jumlahPenumpang} onChange={e => updateKapal('jumlahPenumpang', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Isi 0 jika kapal kargo tanpa penumpang</small>
           </div>
           <div className="form-group">
             <label>Pelabuhan Asal <em>(Last Port)</em></label>
-            <input value={kapal.lastPort} onChange={e => updateKapal('lastPort', e.target.value)} placeholder="Singapore" />
+            <input value={kapal.lastPort} onChange={e => updateKapal('lastPort', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Pelabuhan terakhir sebelum tiba</small>
           </div>
           <div className="form-group">
             <label>Pelabuhan Tujuan <em>(Next Port)</em></label>
-            <input value={kapal.nextPort} onChange={e => updateKapal('nextPort', e.target.value)} placeholder="Belawan" />
+            <input value={kapal.nextPort} onChange={e => updateKapal('nextPort', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Pelabuhan berikutnya setelah singgah</small>
           </div>
           <div className="form-group">
             <label>Lokasi Sandar <em>(Berthing Location)</em></label>
-            <input value={kapal.lokasiSandar} onChange={e => updateKapal('lokasiSandar', e.target.value)} placeholder="Dermaga 3 Pelabuhan Tanjung Priok" />
+            <input value={kapal.lokasiSandar} onChange={e => updateKapal('lokasiSandar', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor dermaga dan nama pelabuhan sandar</small>
           </div>
         </div>
@@ -193,47 +192,47 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
         <div className="form-grid col3">
           <div className="form-group">
             <label>Tanggal Tiba</label>
-            <input type="date" value={kapal.tanggalTiba} onChange={e => updateKapal('tanggalTiba', e.target.value)} placeholder="dd/mm/yyyy" />
+            <input type="date" value={kapal.tanggalTiba} onChange={e => updateKapal('tanggalTiba', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Tanggal kapal tiba di pelabuhan</small>
           </div>
           <div className="form-group">
             <label>Jam Tiba</label>
-            <input type="time" value={kapal.jamTiba} onChange={e => updateKapal('jamTiba', e.target.value)} placeholder="HH:MM" />
+            <input type="time" value={kapal.jamTiba} onChange={e => updateKapal('jamTiba', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Waktu kapal sandar/labuh jangkar</small>
           </div>
           <div className="form-group">
             <label>Lokasi Tiba</label>
-            <input value={kapal.lokasiTiba} onChange={e => updateKapal('lokasiTiba', e.target.value)} placeholder="Pelabuhan Tanjung Priok" />
+            <input value={kapal.lokasiTiba} onChange={e => updateKapal('lokasiTiba', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama pelabuhan kedatangan</small>
           </div>
           <div className="form-group">
             <label>Tanggal Periksa</label>
-            <input type="date" value={kapal.tanggalPeriksa} onChange={e => updateKapal('tanggalPeriksa', e.target.value)} placeholder="dd/mm/yyyy" />
+            <input type="date" value={kapal.tanggalPeriksa} onChange={e => updateKapal('tanggalPeriksa', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Tanggal pelaksanaan inspeksi sanitasi</small>
           </div>
           <div className="form-group">
             <label>Jam Periksa</label>
-            <input type="time" value={kapal.jamPeriksa} onChange={e => updateKapal('jamPeriksa', e.target.value)} placeholder="HH:MM" />
+            <input type="time" value={kapal.jamPeriksa} onChange={e => updateKapal('jamPeriksa', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Waktu mulai pemeriksaan di atas kapal</small>
           </div>
           <div className="form-group">
             <label>Lokasi Periksa</label>
-            <input value={kapal.lokasiPeriksa} onChange={e => updateKapal('lokasiPeriksa', e.target.value)} placeholder="Dermaga 3 Pelabuhan Tanjung Priok" />
+            <input value={kapal.lokasiPeriksa} onChange={e => updateKapal('lokasiPeriksa', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Lokasi spesifik pemeriksaan dilakukan</small>
           </div>
           <div className="form-group">
             <label>Tanggal Berangkat</label>
-            <input type="date" value={kapal.tanggalBerangkat} onChange={e => updateKapal('tanggalBerangkat', e.target.value)} placeholder="dd/mm/yyyy" />
+            <input type="date" value={kapal.tanggalBerangkat} onChange={e => updateKapal('tanggalBerangkat', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Tanggal kapal dijadwalkan meninggalkan pelabuhan</small>
           </div>
           <div className="form-group">
             <label>Jam Berangkat</label>
-            <input type="time" value={kapal.jamBerangkat} onChange={e => updateKapal('jamBerangkat', e.target.value)} placeholder="HH:MM" />
+            <input type="time" value={kapal.jamBerangkat} onChange={e => updateKapal('jamBerangkat', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Estimasi waktu kapal bertolak</small>
           </div>
           <div className="form-group">
             <label>SSCEC/SSCC Lama</label>
-            <input value={kapal.sscecLama} onChange={e => updateKapal('sscecLama', e.target.value)} placeholder="SSCEC/2024/001" />
+            <input value={kapal.sscecLama} onChange={e => updateKapal('sscecLama', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nomor sertifikat sanitasi sebelumnya (jika ada)</small>
           </div>
         </div>
@@ -244,7 +243,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
         <div className="form-grid">
           <div className="form-group">
             <label>Nama Petugas 1</label>
-            <input value={petugas.nama1} onChange={e => updatePetugas('nama1', e.target.value)} placeholder="Dr. Ahmad Hidayat" />
+            <input value={petugas.nama1} onChange={e => updatePetugas('nama1', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap + gelar sesuai SK penugasan</small>
           </div>
           <div className="form-group">
@@ -254,7 +253,6 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
               type="number" 
               value={petugas.nip1} 
               onChange={e => handleNIPChange('nip1', e.target.value)} 
-              placeholder="198501012010011001"
               maxLength={18}
               style={validationErrors.nip1 ? {borderColor:'#ef4444'} : {}}
             />
@@ -268,7 +266,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>Nama Petugas 2</label>
-            <input value={petugas.nama2} onChange={e => updatePetugas('nama2', e.target.value)} placeholder="Dr. Siti Nurhaliza" />
+            <input value={petugas.nama2} onChange={e => updatePetugas('nama2', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 1 petugas</small>
           </div>
           <div className="form-group">
@@ -278,7 +276,6 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
               type="number" 
               value={petugas.nip2} 
               onChange={e => handleNIPChange('nip2', e.target.value)} 
-              placeholder="198602022011012002"
               maxLength={18}
               style={validationErrors.nip2 ? {borderColor:'#ef4444'} : {}}
             />
@@ -292,7 +289,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>Nama Petugas 3</label>
-            <input value={petugas.nama3} onChange={e => updatePetugas('nama3', e.target.value)} placeholder="Dr. Budi Santoso" />
+            <input value={petugas.nama3} onChange={e => updatePetugas('nama3', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Kosongkan jika hanya 2 petugas</small>
           </div>
           <div className="form-group">
@@ -302,7 +299,6 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
               type="number" 
               value={petugas.nip3} 
               onChange={e => handleNIPChange('nip3', e.target.value)} 
-              placeholder="198703032012013003"
               maxLength={18}
               style={validationErrors.nip3 ? {borderColor:'#ef4444'} : {}}
             />
@@ -316,7 +312,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>Kepala Wilayah Kerja/Penanggung Jawab</label>
-            <input value={petugas.namaWilker} onChange={e => updatePetugas('namaWilker', e.target.value)} placeholder="Dr. Andi Wijaya, M.Kes" />
+            <input value={petugas.namaWilker} onChange={e => updatePetugas('namaWilker', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Kepala Wilayah Kerja/Penanggung Jawab</small>
           </div>
           <div className="form-group">
@@ -326,7 +322,6 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
               type="number" 
               value={petugas.nipWilker} 
               onChange={e => handleNIPChange('nipWilker', e.target.value)} 
-              placeholder="197501011998031001"
               maxLength={18}
               style={validationErrors.nipWilker ? {borderColor:'#ef4444'} : {}}
             />
@@ -340,7 +335,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group">
             <label>Ketua Tim Kerja Pengawasan Alat Angkut dan Barang</label>
-            <input value={petugas.namaKetuaTim} onChange={e => updatePetugas('namaKetuaTim', e.target.value)} placeholder="Dr. Rini Kusuma, M.Sc" />
+            <input value={petugas.namaKetuaTim} onChange={e => updatePetugas('namaKetuaTim', e.target.value)} />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama lengkap Ketua Tim Kerja Pengawasan Alat Angkut dan Barang</small>
           </div>
           <div className="form-group">
@@ -350,7 +345,6 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
               type="number" 
               value={petugas.nipKetuaTim} 
               onChange={e => handleNIPChange('nipKetuaTim', e.target.value)} 
-              placeholder="197602022000032001"
               maxLength={18}
               style={validationErrors.nipKetuaTim ? {borderColor:'#ef4444'} : {}}
             />
@@ -364,7 +358,7 @@ export default function StepDataUmum({ kapal, updateKapal, petugas, updatePetuga
           </div>
           <div className="form-group full">
             <label>Nama Pelabuhan</label>
-            <input value={petugas.pelabuhan} onChange={e => updatePetugas('pelabuhan', e.target.value)} placeholder="Tanjung Priok" />
+            <input value={petugas.pelabuhan} onChange={e => updatePetugas('pelabuhan', e.target.value)}  />
             <small style={{display:'block',marginTop:4,fontSize:12,color:'#64748b'}}>Nama pelabuhan KKP yang melaksanakan pemeriksaan</small>
           </div>
         </div>

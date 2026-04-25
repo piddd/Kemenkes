@@ -59,15 +59,13 @@ export const validatePositiveNumber = (value) => {
 };
 
 /**
- * Validate IMO number (allows alphanumeric - letters and numbers)
+ * Validate IMO number (allows all characters)
  * @param {string} imo - IMO number
  * @returns {boolean} - true if valid
  */
 export const validateIMO = (imo) => {
-  if (!imo) return true;
-  // Allow any alphanumeric input (letters and numbers)
-  const imoStr = String(imo).replace(/\s/g, '');
-  return /^[a-zA-Z0-9]+$/.test(imoStr);
+  // No validation - accept all characters
+  return true;
 };
 
 /**
@@ -80,7 +78,7 @@ export const getValidationMessage = (field, type) => {
   const messages = {
     required: `${field} wajib diisi`,
     nip: 'NIP harus angka saja',
-    imo: 'Nomor IMO harus berisi huruf/angka saja',
+    imo: 'Nomor IMO tidak valid',
     positive: `${field} harus lebih dari 0`,
     dateFuture: 'Tanggal tidak boleh di masa depan',
     dateRange: 'Tanggal tiba harus sebelum tanggal berangkat',

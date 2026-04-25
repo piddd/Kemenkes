@@ -70,10 +70,10 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
   function tindakan(k) {
     const f = FORMS[k]; if (!f.tindakan) return '';
     return `<div class="ti-wrap"><strong>A. Tindakan ${f.tindakanType}</strong>
-    <table class="nb">
-    <tr><td style="width:150px;padding:1px 0">Tindakan ${f.tindakanType}</td><td style="padding:1px 0">: <strong><em>${f.tindakan}</em></strong></td></tr>
-    <tr><td style="padding:1px 0">Pada hari/tanggal</td><td style="padding:1px 0">: ${K.tglPeriksaDenganHari}</td></tr>
-    <tr><td style="padding:1px 0">Pemeriksa</td><td style="padding:1px 0">: ${P.nama1}</td></tr></table></div>`;
+    <table class="nb" style="width:100%;table-layout:fixed">
+    <tr><td style="width:180px;padding:1px 0">Tindakan ${f.tindakanType}</td><td style="padding:1px 0">:&nbsp;<span style="font-weight:bold">${f.tindakan}</span></td></tr>
+    <tr><td style="padding:1px 0">Pada hari/tanggal</td><td style="padding:1px 0">:&nbsp;${K.tglPeriksaDenganHari}</td></tr>
+    <tr><td style="padding:1px 0">Pemeriksa</td><td style="padding:1px 0">:&nbsp;${dot(P.nama1, 30)}</td></tr></table></div>`;
   }
 
   function ckTable(k) {
@@ -114,13 +114,13 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
       <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
       ${ttdImg(ttd.p1) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
       </div>
-      <div style="font-size:8.5pt">1. ${P.nama1}<br>NIP. ${P.nip1}</div>
+      <div style="font-size:8.5pt">1. ${dot(P.nama1,22)}<br>NIP. ${dot(P.nip1,18)}</div>
     </div>
     <div style="margin-bottom:6px">
       <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
       ${ttdImg(ttd.p2) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
       </div>
-      <div style="font-size:8.5pt">2. ${P.nama2}<br>NIP. ${P.nip2}</div>
+      <div style="font-size:8.5pt">2. ${dot(P.nama2,22)}<br>NIP. ${dot(P.nip2,18)}</div>
     </div>
     <div style="margin-bottom:4px">
       <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
@@ -141,12 +141,25 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
     <div class="tln"></div>
     <div style="font-size:8.5pt;margin-top:2px">${dot(K.namaKapten,22)}</div>
     </td><td style="vertical-align:top;padding-left:12px">
-    <div style="font-size:8.5pt;margin-bottom:4px">${dot(P.pelabuhan||'Tanjung Priok',18)}, ${K.tglPeriksa}<br>Petugas pemeriksa / <em>Officer</em></div>
-    <div style="min-height:45px;margin:6px 0;display:flex;align-items:center;justify-content:flex-start">
-    ${ttdImg(ttd.p1) ? `<div style="width:90px;height:45px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:43px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:45px"></div>'}
+    <div style="font-size:8.5pt;margin-bottom:4px">${dot(P.pelabuhan||'Tanjung Priok',18)}, ${K.tglPeriksa}<br>Petugas / <em>Officer</em></div>
+    <div style="margin-bottom:6px">
+      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p1) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
+      </div>
+      <div style="font-size:8.5pt">1. ${dot(P.nama1,22)}<br>NIP. ${dot(P.nip1,18)}</div>
     </div>
-    <div class="tln"></div>
-    <div style="font-size:8.5pt;margin-top:2px">${P.nama1}<br>NIP. ${P.nip1}</div>
+    <div style="margin-bottom:6px">
+      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p2) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
+      </div>
+      <div style="font-size:8.5pt">2. ${dot(P.nama2,22)}<br>NIP. ${dot(P.nip2,18)}</div>
+    </div>
+    <div style="margin-bottom:4px">
+      <div style="min-height:38px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p3) ? `<div style="width:90px;height:38px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p3}" style="max-height:36px;max-width:88px;object-fit:contain"></div>` : '<div style="width:90px;height:38px"></div>'}
+      </div>
+      <div style="font-size:8.5pt">3. ${dot(P.nama3,22)}<br>NIP. ${dot(P.nip3,18)}</div>
+    </div>
     </td></tr></table>`;
   }
 
@@ -167,13 +180,13 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
         <div style="min-height:50px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
           ${ttdImg(ttd.p1) ? `<div style="width:100px;height:50px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:45px;max-width:95px;object-fit:contain"></div>` : '<div style="width:100px;height:50px"></div>'}
         </div>
-        <div style="font-size:9pt">1. ${P.nama1}<br>NIP. ${P.nip1}</div>
+        <div style="font-size:9pt">1. ${dot(P.nama1,22)}<br>NIP. ${dot(P.nip1,18)}</div>
       </div>
       <div style="margin-bottom:10px">
         <div style="min-height:50px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
           ${ttdImg(ttd.p2) ? `<div style="width:100px;height:50px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:45px;max-width:95px;object-fit:contain"></div>` : '<div style="width:100px;height:50px"></div>'}
         </div>
-        <div style="font-size:9pt">2. ${P.nama2}<br>NIP. ${P.nip2}</div>
+        <div style="font-size:9pt">2. ${dot(P.nama2,22)}<br>NIP. ${dot(P.nip2,18)}</div>
       </div>
       <div style="margin-bottom:10px">
         <div style="min-height:50px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
