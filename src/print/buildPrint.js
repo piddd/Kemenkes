@@ -198,7 +198,7 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
   }
 
   function ttdVektor() {
-    return `<table class="ts nb"><tr><td class="tl" style="vertical-align:top">
+    return `<table class="ts nb"><tr><td class="tl" style="vertical-align:top;width:40%">
     Mengetahui <em>(Knowledge by)</em><br>Nahkoda/Perwira Jaga<br><em>Master / Officer on charge</em>
     <div style="min-height:70px;margin:8px 0;position:relative;width:120px">
     ${ttdImg(ttd.capKapal) ? `<img src="${ttd.capKapal}" style="position:absolute;top:0;left:0;max-height:70px;max-width:60px;object-fit:contain;z-index:1">` : ''}
@@ -206,11 +206,26 @@ export function buildPrintHTML({ kapal: raw, petugas: P, ttd, checklist, rekomen
     </div>
     <div class="tln"></div>
     ${dot(K.namaKapten,25)}<br>NIP.
-    </td><td style="vertical-align:top">Pemeriksa/<em>Inspector</em><br>
-    <div style="min-height:60px;margin:8px 0;display:flex;align-items:center;justify-content:flex-start">
-    ${ttdImg(ttd.p1) ? `<div style="width:100px;height:60px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:50px;max-width:100px;object-fit:contain"></div>` : '<div style="width:100px;height:60px"></div>'}
+    </td><td style="vertical-align:top;width:60%">
+    <div style="font-size:9pt;margin-bottom:6px">${dot(P.pelabuhan||'Tanjung Priok',20)}, ${K.tglPeriksa}<br>Pemeriksa / <em>Inspector</em></div>
+    <div style="margin-bottom:8px">
+      <div style="min-height:50px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p1) ? `<div style="width:100px;height:50px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p1}" style="max-height:45px;max-width:95px;object-fit:contain"></div>` : '<div style="width:100px;height:50px"></div>'}
+      </div>
+      <div style="font-size:9pt">1. ${dot(P.nama1,22)}<br>NIP. ${dot(P.nip1,18)}</div>
     </div>
-    ${P.nama1}<br>NIP. ${P.nip1}
+    <div style="margin-bottom:8px">
+      <div style="min-height:50px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p2) ? `<div style="width:100px;height:50px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p2}" style="max-height:45px;max-width:95px;object-fit:contain"></div>` : '<div style="width:100px;height:50px"></div>'}
+      </div>
+      <div style="font-size:9pt">2. ${dot(P.nama2,22)}<br>NIP. ${dot(P.nip2,18)}</div>
+    </div>
+    <div style="margin-bottom:8px">
+      <div style="min-height:50px;margin-bottom:2px;display:flex;align-items:center;justify-content:flex-start">
+      ${ttdImg(ttd.p3) ? `<div style="width:100px;height:50px;display:flex;align-items:center;justify-content:center"><img src="${ttd.p3}" style="max-height:45px;max-width:95px;object-fit:contain"></div>` : '<div style="width:100px;height:50px"></div>'}
+      </div>
+      <div style="font-size:9pt">3. ${dot(P.nama3,22)}<br>NIP. ${dot(P.nip3,18)}</div>
+    </div>
     </td></tr></table>
     <div style="text-align:center;margin-top:20px;font-size:9pt;page-break-inside:avoid">
     Mengetahui, <em>(Knowledge by)</em><br>Ketua Tim Kerja Pengawasan Alat Angkut dan Barang
